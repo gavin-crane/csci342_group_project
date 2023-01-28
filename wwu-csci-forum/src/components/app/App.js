@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import Post from '../post/post';
+import Button from '../button/button';
 import './App.css';
 
 function App() {
@@ -9,5 +10,4 @@ function App() {
     </>
   );
 }
-console.log("dasdasd")
 export default App;

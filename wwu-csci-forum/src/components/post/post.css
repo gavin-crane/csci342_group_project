@@ -40,31 +40,28 @@
     margin-left: 0.625rem;
     margin-right: 0.625rem;
     max-width: 40.625rem;
+    overflow:hidden;
   }
 
   .Form {
     background-color:  rgb(48, 52, 54);
   }
 
-  .Button {
-    color: rgb(91, 91, 91);
-    border-radius: 0.3125rem;
-    padding: .5rem 1rem;
-    font-size: 0.875rem;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    margin-bottom: 0.875rem;  
+  .SaveButton{
+    float:right;
+    margin-left:0.875rem;
+    margin-bottom: 0.875rem;
+    flex-direction: column;
+  }
+  .SumbitButton{
+    float:right;
+    margin-bottom: 0.875rem;
+    flex-direction: column;
   }
 
-  .Button:hover {
-    background-color: #cecece;
-    border-radius: 0.3125rem;
-    padding: .5rem 1rem;
-    font-size: 0.875rem;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    margin-bottom: 0.875rem;
+  .LeftButton {
+    flex-direction: column;
+    float: left;
+    /* margin-bottom: 0.875rem;
+    margin-left:0.875rem; */
   }
- 

@@ -1,16 +1,14 @@
 import React, { useState} from 'react';
 import './post.css'
+import Button from '../button/button';
 
 
 function Post() {
   const [title, setTitle] = useState();
   const [body, setBody] = useState();
 
-
-  console.log("this is the post functional component!")
-
   function handleSubmit(event) {
-    //event.preventDefault();
+    event.preventDefault();
     // Add code here to send the post data to the server
     console.log("Post submitted:", title, body);
     setTitle();
@@ -24,7 +22,18 @@ function Post() {
             <br />  
             <textarea className = "InputBody" value={body} placeholder="Text" onChange={event => setBody(event.target.value)} />
             <br />
-            <button className = "Button" onClick= {handleSubmit}>Submit</button>
+            <div className = "LeftButton">
+              <Button onClick= {handleSubmit}>Back</Button>
+            </div>
+            <div className = "SaveButton">
+              <Button onClick= {handleSubmit}>Submit</Button>
+            </div>
+            <div className = "SumbitButton">
+              <Button onClick= {handleSubmit}>Save</Button>
+            </div>
+           
+            {/* <Button onClick= {handleSubmit}>Submit</Button> */}
+            {/* <button className = "Button" onClick= {handleSubmit}>Submit</button> */}
         </div>
     </div>
   );
