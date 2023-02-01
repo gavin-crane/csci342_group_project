@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Button from '../button/button';
 
-const Login = () => {
-    const [state, setState] = useState({username: '', password: ''});
+const Signup = () => {
+    const [state, setState] = useState({username: '', password: '', passwordConfirm: ''});
 
     const handleChange = event => {
         setState({ ...state, [event.target.name]: event.target.value });
@@ -10,9 +10,9 @@ const Login = () => {
 
     const handleSubmit = event => {
         event.preventDefault();
-        const { username, password } = state;
+        const { username, password, passwordConfirm } = state;
         // Add code here to send user info to the server
-        alert(`username: ${username} password: ${password}`);
+        alert(`username: ${username} password: ${password} confirmed password: ${passwordConfirm}`);
     }
 
     return (
@@ -27,9 +27,14 @@ const Login = () => {
                 <input className="password-input" type="text" name="password" value={state.password} onChange={handleChange} />
             </label>
             <br />
-            <Button onClick={handleSubmit}>Log In</Button>
+            <label className="label">
+                Confirm Password:
+                <input className="password-input" type="text" name="passwordConfirm" value={state.passwordConfirm} onChange={handleChange} />
+            </label>
+            <br />
+            <Button onClick={handleSubmit}>Sign Up</Button>
         </form>
     )
 }
 
-export default Login;
+export default Signup;

@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import Post from '../post/post';
 import Login from '../login/login';
+import Signup from '../login/signup';
 import Button from '../button/button';
 import './App.css';
 
