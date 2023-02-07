@@ -1,19 +1,15 @@
 /* footer.css */
 .footer {
-     flex-basis: 0;
+    /* flex-basis: 0; */
     background-color: #f7f7f7;
-
+    display: inline-block;
+    position: relative;
 
     color: #6E7072;
-    padding: 4em 1rem;
     font-size: 14px;
     font-weight: lighter;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    justify-content: center;
     bottom: 0;
     width: 100%;
-    left: 0;  
 
      /* ... */
      padding: 4em 1rem;

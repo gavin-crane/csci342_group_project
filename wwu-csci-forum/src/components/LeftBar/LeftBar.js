@@ -1,12 +1,12 @@
 import React, {useEffect} from 'react'
 import "./LeftBar.css"
+import FilterTags from '../FilterTags/FilterTags';
 
 
 export default function LeftBar() {
 
 
   return (
-    <div className = "leftBar">
     <div className="leftBarContainer">
       <div className = "profile">
         <div className = "fill">
@@ -15,7 +15,7 @@ export default function LeftBar() {
           <h2>Forum</h2>
         </div>
       </div>
+      <FilterTags/>
     </div>
-  </div>
   )
 }
