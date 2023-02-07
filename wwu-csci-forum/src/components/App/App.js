@@ -24,7 +24,7 @@ function App() {
   
   return (
     <>
-      <Navigation />
+      <Navigation/>
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path='/login' element={<LoginPage />}></Route>
