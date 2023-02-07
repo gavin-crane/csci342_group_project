@@ -40,11 +40,22 @@
     margin-left: 0.625rem;
     margin-right: 0.625rem;
     max-width: 40.625rem;
-    overflow:hidden;
+    overflow: hidden;
+    width: 100%
+  }
+
+  .FormTitle{
+    padding-top: 4rem;
+    color:#beb4a9;
   }
 
   .Form {
     background-color:  rgb(48, 52, 54);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 30%;
   }
 
   .SaveButton{

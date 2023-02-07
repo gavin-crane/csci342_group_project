@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import Button from '../Button/Button';
+import Button from '../button/button';
 import { login } from '../../store/Slices/AuthSlice';
+import "./Credential.css";
 
 const Login = () => {
     const [username, setUsername] = useState("");
@@ -32,19 +33,17 @@ const Login = () => {
     }
 
     return (
-        <form className="form">
-            <label className="label">
-                Username:
+        <div className="FormContainer">
+            <form className="form">
+                <label className="label">Username: </label>
                 <input className="username-input" type="text" name="username" onChange={(e) => setUsername(e.target.value)} />
-            </label>
-            <br />
-            <label className="label">
-                Password:
+                {/* <br /> */}
+                <label className="label">Password: </label>
                 <input className="password-input" type="text" name="password" onChange={(e) => setPassword(e.target.value)} />
-            </label>
-            <br />
-            <Button onClick={handleSubmit}>Log In</Button>
-        </form>
+                {/* <br /> */}
+                <Button onClick={handleSubmit}>Log In</Button>
+            </form>
+        </div>
     )
 }
 

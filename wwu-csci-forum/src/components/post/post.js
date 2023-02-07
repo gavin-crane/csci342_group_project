@@ -1,6 +1,6 @@
 import React, { useState} from 'react';
-import './Post.css'
-import Button from '../Button/Button';
+import './post.css'
+import Button from '../button/button';
 
 
 function Post() {
@@ -17,6 +17,7 @@ function Post() {
 
   return (
     <div className = "Form">
+      <h1 className='FormTitle'>Create your own forum!</h1>
         <div className = "InsideForm">
             <input className = "InputTitle" type="text" placeholder="Title" value={title} onChange={event => setTitle(event.target.value)} />           
             <br />  

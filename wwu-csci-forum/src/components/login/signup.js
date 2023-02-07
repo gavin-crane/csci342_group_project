@@ -38,24 +38,20 @@ const Signup = () => {
     }
 
     return (
-        <form className="form">
-            <label className="label">
-                Username:
+        <div className='FormContainer'>
+            <form className="form">
+                <label className="label"> Username:</label>
                 <input className="username-input" type="text" name="username" onChange={(e) => setUsername(e.target.value)} />
-            </label>
-            <br />
-            <label className="label">
-                Password:
+                
+                <label className="label"> Password:</label>
                 <input className="password-input" type="text" name="password" onChange={(e) => setPassword(e.target.value)} />
-            </label>
-            <br />
-            <label className="label">
-                Confirm Password:
+                
+                <label className="label"> Confirm Password:</label>
                 <input className="password-input" type="text" name="passwordConfirm" onChange={(e) => setPasswordConfirm(e.target.value)} />
-            </label>
-            <br />
-            <Button onClick={handleSubmit}>Sign Up</Button>
-        </form>
+                
+                <Button onClick={handleSubmit}>Sign Up</Button>
+            </form>
+        </div>
     )
 }
 
