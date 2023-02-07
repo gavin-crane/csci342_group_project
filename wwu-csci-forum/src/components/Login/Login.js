@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Button from '../Button/Button';
 import { login } from '../../store/Slices/AuthSlice';
 import "./Credential.css";
@@ -37,10 +37,8 @@ const Login = () => {
             <form className="form">
                 <label className="label">Username: </label>
                 <input className="username-input" type="text" name="username" onChange={(e) => setUsername(e.target.value)} />
-                {/* <br /> */}
                 <label className="label">Password: </label>
                 <input className="password-input" type="text" name="password" onChange={(e) => setPassword(e.target.value)} />
-                {/* <br /> */}
                 <Button onClick={handleSubmit}>Log In</Button>
             </form>
         </div>

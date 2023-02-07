@@ -35,8 +35,6 @@ function App() {
           </Protected>
         }></Route>
         <Route path='/post' element={<Post />}></Route>
-        {/*<MainThread postDetails={postDetails2}/>*/}
-        {/* <Post/> */}
       </Routes>
       <Footer />
     </>

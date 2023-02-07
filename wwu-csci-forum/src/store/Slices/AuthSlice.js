@@ -12,7 +12,6 @@ export const AuthSlice = createSlice({
         login: (state, action) => {
             state.username = action.payload;
         },
-        //logout
         logout: (state) => {
             state.username = ''
         },

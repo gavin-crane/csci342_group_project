@@ -34,7 +34,7 @@ const Signup = () => {
         }
         localStorage.setItem("user", JSON.stringify({username, password, passwordConfirm}))
         dispatch(login(username));
-        navigate("/");
+        navigate("/profile");
     }
 
     return (
