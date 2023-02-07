@@ -1,8 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '../Button/Button';
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { login } from "../../store/Slices/AuthSlice";
 
 const Signup = () => {
     const [state, setState] = useState({username: '', password: '', passwordConfirm: ''});
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (localStorage.getItem("isAuth")) {
+            navigate("/profile");
+        }
+    }, [navigate]);
 
     const handleChange = event => {
         setState({ ...state, [event.target.name]: event.target.value });
@@ -12,7 +23,21 @@ const Signup = () => {
         event.preventDefault();
         const { username, password, passwordConfirm } = state;
         // Add code here to send user info to the server
-        alert(`username: ${username} password: ${password} confirmed password: ${passwordConfirm}`);
+        if (!username) {
+            return alert("Username is required");
+        }
+        if (!password) {
+            return alert("Password is required");
+        }
+        if (!passwordConfirm) {
+            return alert("Password is required");
+        }
+        if (password !== passwordConfirm) {
+            return alert("Passwords do not match");
+        }
+        localStorage.setItem("user", JSON.stringify({username, password, passwordConfirm}))
+        dispatch(login(username));
+        navigate("/");
     }
 
     return (

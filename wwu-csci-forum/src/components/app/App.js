@@ -1,3 +1,4 @@
+import React, {useEffect} from "react";
 import { Routes, Route } from 'react-router-dom';
 import LoginPage from '../Pages/LoginPage';
 import SignupPage from '../Pages/SignUpPage';
@@ -7,7 +8,7 @@ import Footer from '../Footer/Footer';
 import Profile from '../Pages/Profile';
 import './App.css';
 import { useDispatch } from 'react-redux';
-import { login } from '../../store/slices/authSlice';
+import { login } from '../../store/Slices/AuthSlice';
 import Protected from '../Login/Protected';
 
 function App() {
