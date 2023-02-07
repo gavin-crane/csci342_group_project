@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import logout from "../../store/Slices/AuthSlice";
+import Button from '../Button/Button';
 
 const Profile = () => {
     
@@ -20,7 +21,7 @@ const Profile = () => {
         <div>
             <h1>{user?.username}'s</h1> 
             <h1>Profile</h1>
-            <button onClick={logoutHandler}> Logout</button>
+            <Button onClick={logoutHandler}> Logout</Button>
         </div>
     );
 };

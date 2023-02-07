@@ -24,7 +24,7 @@ function App() {
   
   return (
     <>
-      <Navigation />
+      <Navigation/>
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path='/login' element={<LoginPage />}></Route>
@@ -35,8 +35,6 @@ function App() {
           </Protected>
         }></Route>
         <Route path='/post' element={<Post />}></Route>
-        {/*<MainThread postDetails={postDetails2}/>*/}
-        {/* <Post/> */}
       </Routes>
       <Footer />
     </>
