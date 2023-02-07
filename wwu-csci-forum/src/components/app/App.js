@@ -5,7 +5,7 @@ import SignupPage from '../Pages/SignUpPage';
 import Home from '../Pages/Home';
 import Navigation from '../Navigation/Navigation';
 import Footer from '../Footer/Footer';
-import Profile from '../Pages/Profile';
+import ProfilePage from '../Login/Profile';
 import './App.css';
 import { useDispatch } from 'react-redux';
 import { login } from '../../store/Slices/AuthSlice';
@@ -31,7 +31,7 @@ function App() {
         <Route path='/signup' element={<SignupPage />}></Route>
         <Route path='/profile' element={
           <Protected>
-            <Profile />
+            <ProfilePage />
           </Protected>
         }></Route>
         <Route path='/post' element={<Post />}></Route>

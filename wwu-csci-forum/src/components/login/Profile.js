@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import logout from "../store/Slices/AuthSlice";
+import logout from "../../store/Slices/AuthSlice";
 
 const Profile = () => {
     
@@ -17,10 +17,11 @@ const Profile = () => {
     }
 
     return (
-        <>
-            <strong>{user?.username}</strong> Profile
-            <button onClick={logoutHandler} ><mdOutlineLogout/> Logout</button>
-        </>
+        <div>
+            <h1>{user?.username}'s</h1> 
+            <h1>Profile</h1>
+            <button onClick={logoutHandler}> Logout</button>
+        </div>
     );
 };
 
