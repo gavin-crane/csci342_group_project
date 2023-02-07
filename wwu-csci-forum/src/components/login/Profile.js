@@ -17,10 +17,10 @@ const Profile = () => {
     }
 
     return (
-        <div className="container">
+        <>
             <strong>{user?.username}</strong> Profile
-            <button onClick={logoutHandler} className="btn btn-secondary"><mdOutlineLogout/> Logout</button>
-        </div>
+            <button onClick={logoutHandler} ><mdOutlineLogout/> Logout</button>
+        </>
     );
 };
 

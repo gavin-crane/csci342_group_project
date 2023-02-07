@@ -5,7 +5,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../store/Slices/AuthSlice";
 
 const Signup = () => {
-    const [state, setState] = useState({username: '', password: '', passwordConfirm: ''});
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [passwordConfirm, setPasswordConfirm] = useState("");
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -15,13 +17,8 @@ const Signup = () => {
         }
     }, [navigate]);
 
-    const handleChange = event => {
-        setState({ ...state, [event.target.name]: event.target.value });
-    }
-
     const handleSubmit = event => {
         event.preventDefault();
-        const { username, password, passwordConfirm } = state;
         // Add code here to send user info to the server
         if (!username) {
             return alert("Username is required");
@@ -44,17 +41,17 @@ const Signup = () => {
         <form className="form">
             <label className="label">
                 Username:
-                <input className="username-input" type="text" name="username" value={state.username} onChange={handleChange} />
+                <input className="username-input" type="text" name="username" onChange={(e) => setUsername(e.target.value)} />
             </label>
             <br />
             <label className="label">
                 Password:
-                <input className="password-input" type="text" name="password" value={state.password} onChange={handleChange} />
+                <input className="password-input" type="text" name="password" onChange={(e) => setPassword(e.target.value)} />
             </label>
             <br />
             <label className="label">
                 Confirm Password:
-                <input className="password-input" type="text" name="passwordConfirm" value={state.passwordConfirm} onChange={handleChange} />
+                <input className="password-input" type="text" name="passwordConfirm" onChange={(e) => setPasswordConfirm(e.target.value)} />
             </label>
             <br />
             <Button onClick={handleSubmit}>Sign Up</Button>

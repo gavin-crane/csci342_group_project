@@ -10,6 +10,7 @@ import './App.css';
 import { useDispatch } from 'react-redux';
 import { login } from '../../store/Slices/AuthSlice';
 import Protected from '../Login/Protected';
+import Post from "../Post/Post";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ function App() {
             <Profile />
           </Protected>
         }></Route>
+        <Route path='/post' element={<Post />}></Route>
         {/*<MainThread postDetails={postDetails2}/>*/}
         {/* <Post/> */}
       </Routes>
