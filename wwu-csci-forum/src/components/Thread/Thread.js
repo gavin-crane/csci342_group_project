@@ -72,7 +72,7 @@ export default function MainThread({postDetails: { title, author, content }}) {
     }
 
     return (
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: 345, marginTop: 2, }}>
             <CardContent>
                 <Typography gutterBottom variant='h5' component='div'>
                     {title}

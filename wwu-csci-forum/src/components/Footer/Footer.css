@@ -1,6 +1,9 @@
 /* footer.css */
 .footer {
+     flex-basis: 0;
     background-color: #f7f7f7;
+
+
     color: #6E7072;
     padding: 4em 1rem;
     font-size: 14px;
@@ -9,8 +12,19 @@
     grid-template-columns: 1fr 1fr 1fr;
     justify-content: center;
     bottom: 0;
-    position: fixed;
     width: 100%;
+    left: 0;  
+
+     /* ... */
+     padding: 4em 1rem;
+     /* ... */
+     display: grid;
+     grid-template-columns: 1fr 1fr 1fr;
+     justify-content: center;
+     /* bottom: 0; */
+     /* position: fixed; */
+     width: 100%;
+     /* left: 0; */
 }
 
 .footer-column{

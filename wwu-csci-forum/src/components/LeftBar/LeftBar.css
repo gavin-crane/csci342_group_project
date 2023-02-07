@@ -1,7 +1,7 @@
 .leftBarContainer {
     /* display: flex;
     flex-direction: column;  */
-    position: relative;
+    position: fixed;
     width: 245px;
     margin-top: 1rem; 
     margin-left: 1rem;
