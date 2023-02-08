@@ -3,7 +3,7 @@ import "./LeftBar.css"
 import FilterTags from '../FilterTags/FilterTags';
 
 
-
+// default searched filters
 const loadedChips = [
   { key: 0, label: 'Python' },
   { key: 1, label: 'Project' },
@@ -11,6 +11,8 @@ const loadedChips = [
   { key: 8, label: 'CS 247' },
 ]
 
+
+// current filter bank, we can add as many as needed
 const chipBank = [
   { key: 2, label: 'CS 241' },
   { key: 3, label: 'Internship' },
@@ -20,7 +22,6 @@ const chipBank = [
   { key: 0, label: 'Python' },
   { key: 1, label: 'Project' },
   { key: 7, label: 'Research' },
-
 ]
 
 
