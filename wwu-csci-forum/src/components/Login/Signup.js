@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Button from '../Button/Button';
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { login } from "../../store/Slices/AuthSlice";
 
 const Signup = () => {
@@ -35,6 +35,7 @@ const Signup = () => {
         localStorage.setItem("user", JSON.stringify({username, password, passwordConfirm}))
         dispatch(login(username));
         navigate("/profile");
+        window.location.reload(false);
     }
 
     return (

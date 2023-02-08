@@ -23,9 +23,9 @@ const Login = () => {
         // Add code here to send user info to the server
         if(username !== "" && password !== "") {
             localStorage.setItem("user", JSON.stringify({username, password}))
-
             dispatch(login(username))
             navigate("/profile")
+            window.location.reload(false);
         }
         else {
             alert("Incorrect username and password");

@@ -9,9 +9,7 @@ export default function Navigation() {
             <ul>
               <li><Link to="/"><button>Home</button></Link></li>
               <li><Link to="/login"><button>Log In</button></Link></li>
-              <li><Link to="/signup"><button>Sign up</button></Link></li>
-              <li><Link to="/profile"><button>Profile</button></Link></li>
-              <li><Link to="/post"><button>Post!</button></Link></li>            
+              <li><Link to="/signup"><button>Sign up</button></Link></li>        
             </ul>
         </nav>
     </div>
