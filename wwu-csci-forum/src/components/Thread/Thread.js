@@ -32,6 +32,7 @@ const ReplyForm = ({ onSubmit }) => {
 const ReplyThread = ({ reply }) => {
     const [replies, setReplies] = useState([])
     const [upvotes, setUpvotes] = useState(0)
+    const [hasUpvoted, setHasUpvoted] = useState(false)
 
     const addReply = (replyAuthor, replyContent) => {
         setReplies([...replies, { author: replyAuthor, content: replyContent }])
@@ -45,13 +46,17 @@ const ReplyThread = ({ reply }) => {
                 </Typography>
                 <Typography variant='body2' color='text.secondary'>
                     {reply.content}
-                    {upvotes}
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size='small' onClick={() => setUpvotes(upvotes + 1)}>
+                <Button size='small' onClick={() => {
+                    if (!hasUpvoted) {
+                        setUpvotes(upvotes + 1)
+                        setHasUpvoted(true) 
+                    }}}>
                     Upvote
                 </Button>
+                {upvotes}
                 {/* <Button size="small" onClick={() => addReply("Reply Author", "Reply Content")}>
           Reply
         </Button> */}
@@ -96,10 +101,10 @@ export default function MainThread({postDetails: { title, author, content }}) {
                 }}>                    
                 Upvote
                 </Button>
+                {upvotes}
                 <Button size='small' onClick={() => setShowReplyForm(!showReplyForm)}>
                     Reply
                 </Button>
-                {upvotes}
             </CardActions>
             {showReplyForm && (
                 <ReplyForm
