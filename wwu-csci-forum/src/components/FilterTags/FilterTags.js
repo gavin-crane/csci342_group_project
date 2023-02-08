@@ -55,8 +55,10 @@ export default function FilterTags({loadedChips , chipBank}) {
         flexWrap: 'wrap',
         listStyle: 'none',
         position: 'relative',
+        background: 'rgb(200, 200, 200)',
         p: 0.5,
         m: 0,
+        paddingBottom: 1,
       }}
       component="ul"
     >

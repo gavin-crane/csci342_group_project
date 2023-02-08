@@ -1,4 +1,6 @@
 .filterSearch input{
     width: 200px;
     position: static;
+    margin-bottom: 8px;
+    margin-top: 8px;
 }
