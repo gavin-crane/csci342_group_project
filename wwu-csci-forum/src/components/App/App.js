@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux';
 import { login } from '../../store/Slices/AuthSlice';
 import Protected from '../Login/Protected';
 import Post from "../Post/Post";
+import NavigationLoggedIn from "../Navigation/NavigationLoggedIn";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ function App() {
   
   return (
     <>
-      <Navigation/>
+      {(localStorage.getItem('user') !== null) ? <NavigationLoggedIn/> :  <Navigation/>}
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path='/login' element={<LoginPage />}></Route>

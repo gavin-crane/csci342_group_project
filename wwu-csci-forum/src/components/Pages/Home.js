@@ -1,5 +1,4 @@
 import React from 'react';
-import Navigation from '../Navigation/Navigation';
 import LeftBar from '../LeftBar/LeftBar';
 import ThreadList from '../ThreadList/ThreadList'
 import './Home.css'
@@ -17,7 +16,6 @@ const posts = [post, post, post, post, post, post];
 export default function home() {
   return (
     <>
-      <Navigation/>
       <div className = "homeContent">
         <LeftBar/>
         <ThreadList threads={posts}/>

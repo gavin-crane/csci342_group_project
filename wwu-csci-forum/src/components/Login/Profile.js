@@ -11,8 +11,8 @@ const Profile = () => {
     const navigate = useNavigate();
 
     const logoutHandler = () => {
+        window.location.reload(false);
         dispatch(logout);
-
         localStorage.removeItem("user");
         navigate("/")
     }
