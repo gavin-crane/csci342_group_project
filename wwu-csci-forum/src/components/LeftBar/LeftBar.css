@@ -33,7 +33,7 @@
     align-items: center;
     overflow: hidden;
     background-color:  rgb(139, 139, 139);
-    padding-bottom: 20px;
+    padding-bottom: 0px;
     /* margin-bottom: 20px; */
 }
 .fill img {
