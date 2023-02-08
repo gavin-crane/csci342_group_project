@@ -1,25 +1,51 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Chip from '@mui/material/Chip';
 import Paper from '@mui/material/Paper';
+// import Button from '@mui/material/Button';
+import Button from '../Button/Button';
 import TagFacesIcon from '@mui/icons-material/TagFaces';
+import './FilterTags.css';
+
+
 
 const ListItem = styled('li')(({ theme }) => ({
   margin: theme.spacing(0.5),
 }));
 
-export default function FilterTags() {
-  const [chipData, setChipData] = React.useState([
-    { key: 0, label: 'Angular' },
-    { key: 1, label: 'jQuery' },
-    { key: 2, label: 'Polymer' },
-    { key: 3, label: 'React' },
-    { key: 4, label: 'Vue.js' },
-  ]);
+export default function FilterTags({loadedChips , chipBank}) {
 
+  // handle adding and deletion of chips
+  const [chipData, setChipData] = React.useState(loadedChips);
   const handleDelete = (chipToDelete) => () => {
     setChipData((chips) => chips.filter((chip) => chip.key !== chipToDelete.key));
   };
+
+  const handleAdd = (label) => {
+    const chipToAdd = chipBank.find((chip) => chip.label === label);
+    if (!chipData.some((chip) => chip.key === chipToAdd.key)) {
+      setChipData((chips) => [...chips, chipToAdd]);
+    }
+  };
+
+  // handle search functionality
+  const [searchTerm, setSearchTerm] = useState('');
+  const [closestChip, setClosestChip] = useState(null);
+
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
+    const searchResults = chipBank.filter((chip) =>
+      chip.label.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    if (searchResults.length === 0) {
+      setClosestChip(null);
+    } else {
+      setClosestChip(searchResults[0]);
+    }
+  };
+  // end search
+
+  
 
   return (
     <Paper
@@ -28,6 +54,7 @@ export default function FilterTags() {
         justifyContent: 'center',
         flexWrap: 'wrap',
         listStyle: 'none',
+        position: 'relative',
         p: 0.5,
         m: 0,
       }}
@@ -35,11 +62,9 @@ export default function FilterTags() {
     >
       {chipData.map((data) => {
         let icon;
-
         if (data.label === 'React') {
           icon = <TagFacesIcon />;
         }
-
         return (
           <ListItem key={data.key}>
             <Chip
@@ -50,6 +75,29 @@ export default function FilterTags() {
           </ListItem>
         );
       })}
+      <div className = "filterSearch">
+        <input type="text" value={searchTerm} onChange={handleSearch} placeholder="search filters" />
+      </div>
+      <div>
+      {!closestChip || !searchTerm ? (
+          ('')
+          ) : (
+              chipBank.filter(data => data.label === closestChip.label).map(data => (
+              <Button sx={{color: 'black', backgroundColor: 'rgba(0, 0, 0, 0.08)'}}
+                key={data.key}
+                onClick={() => handleAdd(data.label)}
+                variant="contained"
+                color="primary"
+              >
+                {data.label}
+              </Button>
+              
+              ))
+              )
+            }
+      </div>
+
+    
     </Paper>
   );
 }

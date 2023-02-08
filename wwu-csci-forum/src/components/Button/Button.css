@@ -10,7 +10,7 @@
   }
 
   .Button:hover {
-    background-color: #cecece;
+    background-color: rgba(0, 0, 0, 0.08);
     border-radius: 0.3125rem;
     padding: .5rem 1rem;
     font-size: 0.8rem;

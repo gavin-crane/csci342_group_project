@@ -22,7 +22,7 @@
 }
 
 .profile {
-    position: fixed;
+    position: relative;
     border-radius: 5px;
     display: inline-block;
 
