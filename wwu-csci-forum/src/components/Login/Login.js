@@ -1,45 +1,57 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import React from 'react';
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Button from '../Button/Button';
 import { login } from '../../store/Slices/AuthSlice';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
 import "./Credential.css";
 
-const Login = () => {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const navigate = useNavigate();
+const formSchema = z.object({
+    username: z.string(),
+    password: z.string().min(6, "password must be at least 6 characters"),
+})
+
+function Login() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-    useEffect(() => {
-        if (localStorage.getItem("isAuth")) {
-            navigate("/profile");
-        }
-    }, [navigate]);
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        resolver: zodResolver(formSchema)
+    });
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        
-        // Add code here to send user info to the server
-        if(username !== "" && password !== "") {
-            localStorage.setItem("user", JSON.stringify({username, password}))
-            dispatch(login(username))
-            navigate("/profile")
-            window.location.reload(false);
-        }
-        else {
-            alert("Incorrect username and password");
-        }
-    }
+    const loginHandler = data => {
+        fetch('/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data),
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    const { username = '' } = data.data.user;
+                    dispatch(login({ username }));
+                    localStorage.setItem('user', JSON.stringify(data.data.user));
+                    navigate("/", { replace: true });
+                    console.log(data.message);
+                } else {
+                    console.error(data.message);
+                }
+            })
+            .catch(err => { })
+    };
 
     return (
         <div className="FormContainer">
-            <form className="form">
+            <form className="form" onSubmit={handleSubmit(loginHandler)}>
                 <label className="label">Username: </label>
-                <input className="username-input" type="text" name="username" onChange={(e) => setUsername(e.target.value)} />
+                <input className="username-input" type="text" {...register("username")} />
                 <label className="label">Password: </label>
-                <input className="password-input" type="text" name="password" onChange={(e) => setPassword(e.target.value)} />
-                <Button onClick={handleSubmit}>Log In</Button>
+                <input className="password-input" type="text" {...register("password")} />
+                {errors.password && <p className="text-danger">{errors.password?.message}</p>}
+                <button type="submit">Login</button>
             </form>
         </div>
     )

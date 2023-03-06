@@ -1,31 +1,35 @@
 import React, {useEffect} from "react";
 import { Routes, Route } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../../store/Slices/AuthSlice';
 import LoginPage from '../Pages/LoginPage';
 import SignupPage from '../Pages/SignUpPage';
 import Home from '../Pages/Home';
 import Navigation from '../Navigation/Navigation';
 import Footer from '../Footer/Footer';
 import ProfilePage from '../Login/Profile';
-import './App.css';
-import { useDispatch } from 'react-redux';
-import { login } from '../../store/Slices/AuthSlice';
 import Protected from '../Login/Protected';
 import Post from "../Post/Post";
-import NavigationLoggedIn from "../Navigation/NavigationLoggedIn";
+import './App.css';
 
-function App() {
+const App = () => {
+  const { loaded } = useSelector(state => state.auth)
   const dispatch = useDispatch();
-
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    if (user) {
-      dispatch(login(user?.username || ''))
+    if (!loaded) {
+      const user = JSON.parse(localStorage.getItem('user'));
+      setTimeout(() => {
+        dispatch(login({
+          username: user?.username || ''
+        }))
+      }, 2000)
     }
-  }, [])
+  })
   
   return (
-    <>
-      {(localStorage.getItem('user') !== null) ? <NavigationLoggedIn/> :  <Navigation/>}
+    <div className="App">
+      {!loaded}
+      <Navigation/>
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path='/login' element={<LoginPage />}></Route>
@@ -38,7 +42,7 @@ function App() {
         <Route path='/post' element={<Post />}></Route>
       </Routes>
       <Footer />
-    </>
+    </div>
   );
 }
 

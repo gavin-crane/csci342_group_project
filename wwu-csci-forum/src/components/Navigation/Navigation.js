@@ -1,17 +1,40 @@
 import React from 'react'
 import './Navigation.css';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from '../../store/Slices/AuthSlice';
 
-export default function Navigation() {
+function Navigation() {
+  const { user } = useSelector(state => state.auth);
+  const dispatch = useDispatch();
+
+  const logoutHandler = () => {
+    dispatch(logout());
+    localStorage.removeItem('user');
+  };
+
   return (
     <div>
-        <nav>
-            <ul>
+      <nav>
+        <ul>
+          {user.username ? (
+            <>
+              <li><Link to="/"><button>Home</button></Link></li>
+              <li><Link to="/profile"><button>Profile</button></Link></li>
+              <li><Link to="/post"><button>Post</button></Link></li>     
+              <li><button onClick={logoutHandler}>Logout</button></li>
+            </>
+          ) : (
+            <>
               <li><Link to="/"><button>Home</button></Link></li>
               <li><Link to="/login"><button>Log In</button></Link></li>
-              <li><Link to="/signup"><button>Sign up</button></Link></li>        
-            </ul>
-        </nav>
+              <li><Link to="/signup"><button>Sign up</button></Link></li>  
+            </>
+          )}
+        </ul>
+      </nav>
     </div>
-  )
+  );
 }
+
+export default Navigation;

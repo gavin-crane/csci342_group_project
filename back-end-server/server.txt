@@ -1,1 +1,0 @@
-This folder wil house the server, handling the connection between the database and the front-end client.
