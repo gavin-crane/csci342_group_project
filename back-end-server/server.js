@@ -1,3 +1,6 @@
+var bcrypt = require('bcryptjs');
+var mongoose = require('mongoose');
+const express = require('express');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
@@ -9,6 +12,21 @@ dotenv.config();
 const url = process.env.DATABASE_URL;
 console.log("db url: " + url);
 
+
+//schema for post
+const post = new mongoose.Schema({
+    title: {
+        type: String,
+    },
+    body: {
+        type: String,
+    },
+    replies: {
+        type: Object
+    },
+});
+
+// schema for user
 const { Schema } = mongoose;
 const userSchema = new Schema({
   firstName: {
@@ -46,58 +64,52 @@ const userSchema = new Schema({
   } 
 });
 
-const User = mongoose.model('User', userSchema);
-const options = {};
-const url = process.env.DATABASE_URL
+const User = mongoose.model('users', userSchema);
 
 mongoose.set('strictQuery', false);
-
-mongoose.connect(url, options)
-  .then(() => console.log('MongoDB connected'))
-  .catch(err => console.log('MongoDB connection error:', err));
-
-
-app.get('/', (req, res) => {
-  res.send('hello world')
+mongoose.connect(url).then(() => {
+    console.log('DB Connection successful!');
 })
-
-
-app.post('/api/signup', async (req, res) => {
-  const { firstName, lastName, email, password, confirmPassword } = req.body;
-
-  if (!firstName || !lastName || !email || !password || !confirmPassword) {
-    return res.status(400).json({
-      status: 'fail',
-      message: 'All input fields are required!',
-      data: null,
-    });
-  }
-
-  try{
-    const hashword = await bcrypt.hash(password, 12)
-    const user = await User.create({
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      password: hashword
-    })
-    console.log(user)
-    return res.json({
-      status: 'success',
-      message: 'User created successfully',
-      data: {       
-        user
-      },
-    });
-  }
-  catch(error){
-    return res.status(400).json({
-      status: 'fail',
-      message: 'Error creating user',
-      data: null,
-    });
-  }
+.catch((error) => {
+    console.log('Connection error:', error);
 });
+
+app.post('/api/signup', (req, res) => {
+    const { username, password, confirmPassword } = req.body
+    
+    if (!username || !password || !confirmPassword) {
+        return res.json({
+            status: 'fail',
+            message: 'All input fields are required!'
+        })
+    }
+
+    bcrypt.hash(password, 12, function(err, hash) {
+        if(err) {
+            return res.json({
+                status: 'fail',
+                message: 'Failed to hash password'
+            })
+        }
+        User.create({username, password: hash}).then((user) => {
+            return res.status(200).json({
+                status: 'success',
+                message: "User created successfully!",
+                data: {
+                    user
+                }
+            });
+        })
+        .catch((err) => {
+            return res.status(500).json({
+                status: 'fail',
+                message: "An error occurred while creating user",
+                err: err
+            });
+        });    
+    })
+    
+})
 
 
 app.post('/api/login', async (req, res) => {
@@ -122,34 +134,6 @@ app.post('/api/login', async (req, res) => {
         message: 'Invalid email or password' ,
       });
     }
-<<<<<<< HEAD
-  
-    const match = await bcrypt.compare(password, user.password);
-  
-    if (!match) {
-      return res.status(401).json({ 
-        status: 'fail',
-        message: 'Invalid email or password' ,
-      });
-    }
-  
-    return res.json({
-        status: 'success',
-        message: 'Login successful!',
-        data: { user },
-    });
-
-  } catch (error) {
-    // Return error response
-    console.error(error);
-    return res.status(500).json({ 
-      status: 'fail',
-      message: 'Error finding user' ,
-    });
-  }
-
-});
-=======
     User.findOne({username}).then((user) => {
         if(!user) {
             return res.json({
@@ -224,7 +208,6 @@ app.get('/api/getPost', (req, res) => {
         })
     }
 })
->>>>>>> faaf1599dfa1d63a1f7f9792e03a54a9ca2a34de
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
