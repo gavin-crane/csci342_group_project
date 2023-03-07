@@ -42,7 +42,7 @@ function Signup() {
                 const { username = '' } = data.data.user;
                 console.log(data.data.user);
                 dispatch(login({ username }));
-                localStorage.setItem('user', JSON.stringify(data.data.user));
+                localStorage.setItem('user', JSON.stringify({username: data.data.user.username, _id: data.data.user._id}));
                 navigate("/", { replace: true });
                 console.log(data.message);
             } else {

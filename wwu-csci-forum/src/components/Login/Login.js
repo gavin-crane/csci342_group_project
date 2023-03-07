@@ -33,7 +33,7 @@ function Login() {
                 if (data.status === 'success') {
                     const { username = '' } = data.data.user;
                     dispatch(login({ username }));
-                    localStorage.setItem('user', JSON.stringify(data.data.user));
+                    localStorage.setItem('user', JSON.stringify({username: data.data.user.username, _id: data.data.user._id}));
                     navigate("/", { replace: true });
                     console.log(data.message);
                 } else {

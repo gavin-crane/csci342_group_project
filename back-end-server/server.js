@@ -88,7 +88,17 @@ app.post('/api/signup', (req, res) => {
                 message: 'Failed to hash password'
             })
         }
-        User.create({username, password: hash}).then((user) => {
+        const newUser = {
+          username: username,
+          password: hash,
+          firstName: '',
+          lastName: '',
+          major: '',
+          gradYear: '',
+          favLang: '',
+          bio: ''
+        }
+        User.create(newUser).then((user) => {
             return res.status(200).json({
                 status: 'success',
                 message: "User created successfully!",
@@ -211,7 +221,8 @@ app.post('/api/update', async (req, res) => {
     }
   
     try{
-      const user = await User.create({
+      const user = await User.updateOne({username: {$eq:username}},
+    {
         username: username,
         firstName: firstName,
         lastName: lastName,
@@ -240,6 +251,35 @@ app.post('/api/update', async (req, res) => {
   });
 
 
+  app.post('/api/profile', async (req, res) => {
+    const {username, id} = req.body;
+  
+    if (!username) {
+      return res.status(400).json({
+        status: 'fail',
+        message: 'Username required!',
+        data: null,
+      });
+    }
+  
+    try{
+      const user = await User.findOne({username: {$eq:username}})
+      return res.json({
+        status: 'success',
+        message: 'User updated successfully',
+        data: {       
+          user
+        },
+      });
+    }
+    catch(error){
+      return res.status(400).json({
+        status: 'fail',
+        message: 'Error updating user',
+        data: null,
+      });
+    }
+  });
 
 
 

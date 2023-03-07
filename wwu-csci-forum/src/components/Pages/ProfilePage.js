@@ -1,9 +1,11 @@
 import React from 'react';
-import Profile from '../Login/Profile';
+import DisplayAccount from '../Account/DisplayAccount';
 
 function ProfilePage() {
   return (
-    <Profile />
+    <>
+      <DisplayAccount />
+    </>
   )
 }
 
