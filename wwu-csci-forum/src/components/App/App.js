@@ -40,7 +40,7 @@ const App = () => {
           </Protected>
         }></Route>
         <Route path='/post' element={<Post />} />
-        <Route path="*" element={<PageNotFound />} />
+        {/* <Route path="*" element={<PageNotFound />} /> */}
       </Routes>
       <Footer />
     </div>
