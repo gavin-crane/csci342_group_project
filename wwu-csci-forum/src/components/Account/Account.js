@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Account.css';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { createChainedFunction } from '@mui/material';
@@ -46,9 +46,7 @@ function Account (){
                     favLang = '', 
                     bio = ''
                 } = data.data.user;
-
-                //localStorage.setItem('user', JSON.stringify(data.data.user));
-                navigate("/", { replace: true });
+                navigate("/profile", { replace: true });
                 console.log(data.message);
             } else {
                 console.error(data.message);

@@ -4,8 +4,8 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const DisplayAccount = () => {
     const navigate = useNavigate();
-
     const user = JSON.parse(localStorage.getItem('user'));
+
     const [userInfo, setUserInfo] = useState({
         username: '', 
         firstName: '', 
@@ -21,28 +21,26 @@ const DisplayAccount = () => {
     }
 
     useEffect(() => {
-    fetch('/api/profile', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(user)
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.status === 'success') {
-            setUserInfo(data.data.user);
-            console.log(data.data.user);
-            console.log(data.message);
-        } else {
-            console.error(data.message);
-        }
-    })
-    .catch(err => { })
+        fetch('/api/profile', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.status === 'success') {
+                setUserInfo(data.data.user);
+                console.log(data.data.user);
+                console.log(data.message);
+            } else {
+                console.error(data.message);
+            }
+        })
+        .catch(err => { })
     }, [])
     
-    
-
     return (
         <>
             <div className="container">
