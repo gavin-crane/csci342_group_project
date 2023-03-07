@@ -27,17 +27,16 @@ const post = new mongoose.Schema({
 });
 
 // schema for user
-const { Schema } = mongoose;
-const userSchema = new Schema({
+const userSchema = new mongoose.Schema({
   firstName: {
     type: String,
-    required: true
+    required: false
   },
   lastName: {
     type: String,
-    required: true
+    required: false
   },
-  email: {
+  username: {
     type: String,
     required: true,
     unique: true
@@ -122,18 +121,6 @@ app.post('/api/login', async (req, res) => {
       data: null,
     });
   }
-
-  try{
-    const user = await User.findOne({
-      email: email,
-    })
-  
-     if (!user) {
-      return res.status(401).json({ 
-        status: 'fail',
-        message: 'Invalid email or password' ,
-      });
-    }
     User.findOne({username}).then((user) => {
         if(!user) {
             return res.json({
