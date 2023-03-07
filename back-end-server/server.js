@@ -1,5 +1,3 @@
-var bcrypt = require('bcryptjs');
-var mongoose = require('mongoose');
 const express = require('express');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
@@ -112,9 +110,9 @@ app.post('/api/signup', (req, res) => {
 
 
 app.post('/api/login', async (req, res) => {
-  const { email, password } = req.body;
+  const { username, password } = req.body;
 
-  if (!email || !password) {
+  if (!username || !password) {
     return res.status(400).json({
       status: 'fail',
       message: 'All input fields are required!',
@@ -202,23 +200,22 @@ app.listen(port, () => {
 
 
 app.post('/api/update', async (req, res) => {
-    const { firstName, lastName, password, email, major, gradYear, favLang, bio } = req.body;
+    const { username, firstName, lastName, password, major, gradYear, favLang, bio } = req.body;
   
-    if (!firstName || !email) {
+    if (!username) {
       return res.status(400).json({
         status: 'fail',
-        message: 'First name and email required!',
+        message: 'Username required!',
         data: null,
       });
     }
   
     try{
       const user = await User.create({
+        username: username,
         firstName: firstName,
         lastName: lastName,
-        email: email,
         password: password,
-        email: email,
         major: major,
         gradYear: gradYear,
         favLang: favLang,
