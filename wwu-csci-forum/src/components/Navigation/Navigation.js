@@ -1,16 +1,18 @@
 import React from 'react'
 import './Navigation.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from '../../store/Slices/AuthSlice';
 
 function Navigation() {
   const { user } = useSelector(state => state.auth);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const logoutHandler = () => {
     dispatch(logout());
     localStorage.removeItem('user');
+    navigate("/login", { replace: true });
   };
 
   return (
