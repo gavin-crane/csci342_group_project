@@ -8,7 +8,7 @@ import Home from '../Pages/Home';
 import Navigation from '../Navigation/Navigation';
 import Footer from '../Footer/Footer';
 import ProfilePage from '../Login/Profile';
-import Protected from '../Login/Protected';
+import Protected from '../../util/Protected';
 import Post from "../Post/Post";
 import './App.css';
 
@@ -31,15 +31,16 @@ const App = () => {
       {!loaded}
       <Navigation/>
       <Routes>
-        <Route path='/' element={<Home />}></Route>
-        <Route path='/login' element={<LoginPage />}></Route>
-        <Route path='/signup' element={<SignupPage />}></Route>
+        <Route path='/' element={<Home />} />
+        <Route path='/login' element={<LoginPage />} />
+        <Route path='/signup' element={<SignupPage />} />
         <Route path='/profile' element={
           <Protected>
             <ProfilePage />
           </Protected>
         }></Route>
-        <Route path='/post' element={<Post />}></Route>
+        <Route path='/post' element={<Post />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
       <Footer />
     </div>

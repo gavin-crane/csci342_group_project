@@ -2,6 +2,7 @@ import React from 'react';
 import LeftBar from '../LeftBar/LeftBar';
 import ThreadList from '../ThreadList/ThreadList'
 import './Home.css'
+
 const post = {
   title: 'My first post',
   author: 'John Doe',
