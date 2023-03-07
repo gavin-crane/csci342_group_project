@@ -1,10 +1,37 @@
 const express = require('express');
-const app = express()
-app.use(express.json())
-const port = 1337
+const dotenv = require('dotenv');
+const mongoose = require('mongoose');
+const app = express();
+app.use(express.json());
+const port = 1337;
+dotenv.config();
+
+const url = process.env.DATABASE_URL;
+console.log("db url: " + url);
+
+
+//schema for post
+const post = new mongoose.Schema({
+    title: {
+        type: String,
+    },
+    body: {
+        type: String,
+    },
+    replies: {
+        type: Object
+    },
+});
+
+mongoose.set('strictQuery', false);
+mongoose.connect(url).then(() => {
+    console.log('DB Connection successful!');
+  })
+  .catch((error) => {
+    console.log('Connection error:', error);
+  });
 
 const users = [];
-
 app.post('/api/signup', (req, res) => {
     const { username, password, confirmPassword } = req.body
     
@@ -56,6 +83,43 @@ app.post('/api/login', (req, res) => {
         }
     })
 
+})
+
+app.post('/api/submitPost', (req, res) => {
+
+    console.log(req.body);
+    const {title, body, replies} = req.body;
+    console.log("submitPost endpoint:",title, body, replies);
+
+    if (!title || !body || !replies) {
+        return res.json({
+            status: 'fail',
+            message: 'All input fields are required!'
+        })
+    }
+    const Post = mongoose.model('Post', post);
+    Post.create({
+        title,
+        body,
+        replies,
+    })
+    .then((newPost) => {
+        return res.status(200).json({ message: "User created successfully", pos: newPost });
+    })
+    .catch((err) => {
+        return res.status(500).json({ error: "An error occurred while adding a post", err: err});
+    });    
+})
+
+app.get('/api/getPost', (req, res) => {
+    const {user, title, body} = req.body;
+
+    if (!user || !title || !body) {
+        return res.json({
+            status: 'fail',
+            message: 'All input fields are required!'
+        })
+    }
 })
 
 app.listen(port, () => {
