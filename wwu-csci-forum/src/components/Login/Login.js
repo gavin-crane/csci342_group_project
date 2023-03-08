@@ -46,12 +46,12 @@ function Login() {
     return (
         <div className="FormContainer">
             <form className="form" onSubmit={handleSubmit(loginHandler)}>
-                <label className="label">Username: </label>
-                <input className="username-input" type="text" {...register("username")} />
-                <label className="label">Password: </label>
-                <input className="password-input" type="text" {...register("password")} />
+                <label className="label">Username </label>
+                <input className="input-field" type="text" {...register("username")} />
+                <label className="label">Password </label>
+                <input className="input-field" type="text" {...register("password")} />
                 {errors.password && <p className="text-danger">{errors.password?.message}</p>}
-                <button type="submit">Login</button>
+                <button className="submit-button" type="submit">Log In</button>
             </form>
         </div>
     )

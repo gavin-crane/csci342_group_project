@@ -32,25 +32,35 @@ const App = () => {
   return (
     <div className="App">
       {!loaded && <AppLoader />}
-      <Navigation/>
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/login' element={<LoginPage />} />
-        <Route path='/signup' element={<SignupPage />} />
-        <Route path='/profile' element={
-          <Protected>
-            <ProfilePage />
-          </Protected>
-        }></Route>
-        <Route path='/update' element={
-          <Protected>
-            <Account />
-          </Protected>
-        }></Route>
-        <Route path='/post' element={<Post />} />
-        <Route path="*" element={<PageNotFound />} />
-      </Routes>
-      <Footer />
+      <div className="navbar">
+        <Navigation/>
+      </div>
+      <div className="main">
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/login' element={<LoginPage />} />
+          <Route path='/signup' element={<SignupPage />} />
+          <Route path='/profile' element={
+            <Protected>
+              <ProfilePage />
+            </Protected>
+          }></Route>
+          <Route path='/update' element={
+            <Protected>
+              <Account />
+            </Protected>
+          }></Route>
+          <Route path='/post' element={
+            <Protected>
+              <Post />
+            </Protected>
+          } />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      </div>
+      <div className="footer">
+        <Footer />
+      </div>
     </div>
   );
 }

@@ -16,7 +16,7 @@ function Navigation() {
   };
 
   return (
-    <div>
+    <div className="nav-container">
       <nav>
         <ul>
           {user.username ? (
