@@ -9,7 +9,7 @@ import * as z from "zod";
 const formSchema = z.object({
     username: z.string().min(1, "Enter a username"),
     password: z.string().min(6, "Password must be at least 6 characters"),
-    confirmPassword: z.string().min(6, "confirm password must be at least 6 characters"),
+    confirmPassword: z.string().min(6, "Confirm password must be at least 6 characters"),
     }).superRefine(({ password, confirmPassword }, ctx) => {
     if (confirmPassword !== password) {
         ctx.addIssue({
@@ -58,10 +58,10 @@ function Signup() {
             <label className="label">Username </label>
                 <input className="input-field" type="text" {...register("username")} />
                 <label className="label">Password </label>
-                <input className="input-field" type="text" {...register("password")} />
+                <input className="input-field" type="password" {...register("password")} />
                 {errors.password && <p className="text-danger">{errors.password?.message}</p>}
                 <label className="label">Confirm Password </label>
-                <input className="input-field" type="text" {...register("confirmPassword")} />
+                <input className="input-field" type="password" {...register("confirmPassword")} />
                 {errors.password && <p className="text-danger">{errors.confirmPassword?.message}</p>}
                 <button className="submit-button" type="submit">Sign Up</button>
             </form>
