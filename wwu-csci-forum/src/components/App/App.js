@@ -14,6 +14,7 @@ import PageNotFound from "../Pages/PageNotFound"
 import Post from "../Post/Post";
 import Account from "../Account/Account";
 import './App.css';
+import CodeRunner from "../CodeRunner/CodeRunner";
 
 const App = () => {
   const { loaded } = useSelector(state => state.auth)
@@ -55,6 +56,7 @@ const App = () => {
               <Post />
             </Protected>
           } />
+          <Route path="/coderun/:lang" element= {<CodeRunner />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </div>
