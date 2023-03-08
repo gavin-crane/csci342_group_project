@@ -1,26 +1,21 @@
 /* footer.css */
 .footer {
     /* flex-basis: 0; */
-    background-color: #f7f7f7;
+    background-color: rgb(230, 230, 230);
     display: inline-block;
     position: relative;
-
     color: #6E7072;
     font-size: 14px;
     font-weight: lighter;
     bottom: 0;
     width: 100%;
-
-     /* ... */
-     padding: 4em 1rem;
-     /* ... */
-     display: grid;
-     grid-template-columns: 1fr 1fr 1fr;
-     justify-content: center;
-     /* bottom: 0; */
-     /* position: fixed; */
-     width: 100%;
-     /* left: 0; */
+    padding: 2em 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: center;
+    /* bottom: 0; */
+    /* position: fixed; */
+    /* left: 0; */
 }
 
 .footer-column{

@@ -16,7 +16,7 @@ function Navigation() {
   };
 
   return (
-    <div>
+    <div className="nav-container">
       <nav>
         <ul>
           {user.username ? (
@@ -25,6 +25,15 @@ function Navigation() {
               <li><Link to="/profile"><button>Profile</button></Link></li>
               <li><Link to="/post"><button>Post</button></Link></li>     
               <li><button onClick={logoutHandler}>Logout</button></li>
+              <li>
+                <div className="dropdown">
+                  <button className="dropbtn">CodeTest</button>                                
+                      <div className="dropdown-content">
+                        <Link to ="/coderun/5YZV">Java</Link>
+                        <Link to="/coderun/5Z00">C</Link>
+                      </div>
+                </div>
+              </li>
             </>
           ) : (
             <>

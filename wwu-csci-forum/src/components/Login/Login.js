@@ -8,8 +8,8 @@ import * as z from 'zod';
 import "./Credential.css";
 
 const formSchema = z.object({
-    username: z.string(),
-    password: z.string().min(6, "password must be at least 6 characters"),
+    username: z.string().min(1, "Enter a username"),
+    password: z.string().min(1, "Enter a password"),
 })
 
 function Login() {
@@ -46,12 +46,12 @@ function Login() {
     return (
         <div className="FormContainer">
             <form className="form" onSubmit={handleSubmit(loginHandler)}>
-                <label className="label">Username: </label>
-                <input className="username-input" type="text" {...register("username")} />
-                <label className="label">Password: </label>
-                <input className="password-input" type="text" {...register("password")} />
+                <label className="label">Username </label>
+                <input className="input-field" type="text" {...register("username")} />
+                <label className="label">Password </label>
+                <input className="input-field" type="password" {...register("password")} />
                 {errors.password && <p className="text-danger">{errors.password?.message}</p>}
-                <button type="submit">Login</button>
+                <button className="submit-button" type="submit">Log In</button>
             </form>
         </div>
     )

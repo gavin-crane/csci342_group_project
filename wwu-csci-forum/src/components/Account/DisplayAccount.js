@@ -66,18 +66,6 @@ const DisplayAccount = () => {
                             <div className="cardRow">
                                 <div className="cardRow-md">
                                     <div className="form-gp">
-                                        <label>First Name</label>
-                                        <label type="text" className="form-cont" >{userInfo.firstName}</label>
-                                    </div>
-                                </div>
-                                <div className="cardRow-md">
-                                    <div className="form-gp">
-                                        <label>Last Name</label>
-                                        <label type="text" className="form-cont" >{userInfo.lastName}</label>
-                                    </div>
-                                </div>
-                                <div className="cardRow-md">
-                                    <div className="form-gp">
                                         <label>Username</label>
                                         <label type="text" className="form-cont" >{userInfo.username}</label>
                                     </div>

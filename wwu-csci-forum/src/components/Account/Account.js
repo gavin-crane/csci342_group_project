@@ -1,7 +1,6 @@
 import React from 'react';
 import './Account.css';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { createChainedFunction } from '@mui/material';
 import { useNavigate } from "react-router-dom";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -24,6 +23,10 @@ function Account (){
         resolver: zodResolver(formSchema)
     });
 
+    const handleCancelClick = () => {
+        navigate("/profile", { replace: true });
+    }
+
     const updateHandler = (data) => {
         console.log(data.data)
         fetch('/api/update', {
@@ -36,16 +39,6 @@ function Account (){
         .then(res => res.json())
         .then(data => {
             if (data.status === 'success') {
-                console.log(data.data.user);
-                const {
-                    username = '', 
-                    firstName = '', 
-                    lastName = '',
-                    major = '', 
-                    gradYear = '', 
-                    favLang = '', 
-                    bio = ''
-                } = data.data.user;
                 navigate("/profile", { replace: true });
                 console.log(data.message);
             } else {
@@ -127,7 +120,7 @@ function Account (){
                                 </div>
                                 <div className='cta-flex'>
                                     <button className="cta-b">Update</button>
-                                    <button className="cta-c">Cancel</button>
+                                    <button className="cta-c" onClick={handleCancelClick}>Cancel</button>
                                 </div>
                             </div>
                         </div>
