@@ -2,14 +2,17 @@ import React, {useEffect} from "react";
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../store/Slices/AuthSlice';
+import AppLoader from '../../util/loaders/AppLoader'
 import LoginPage from '../Pages/LoginPage';
 import SignupPage from '../Pages/SignUpPage';
 import Home from '../Pages/Home';
 import Navigation from '../Navigation/Navigation';
 import Footer from '../Footer/Footer';
-import ProfilePage from '../Login/Profile';
+import ProfilePage from '../Pages/ProfilePage';
 import Protected from '../../util/Protected';
+import PageNotFound from "../Pages/PageNotFound"
 import Post from "../Post/Post";
+import Account from "../Account/Account";
 import './App.css';
 
 const App = () => {
@@ -28,7 +31,7 @@ const App = () => {
   
   return (
     <div className="App">
-      {!loaded}
+      {!loaded && <AppLoader />}
       <Navigation/>
       <Routes>
         <Route path='/' element={<Home />} />
@@ -39,8 +42,13 @@ const App = () => {
             <ProfilePage />
           </Protected>
         }></Route>
+        <Route path='/update' element={
+          <Protected>
+            <Account />
+          </Protected>
+        }></Route>
         <Route path='/post' element={<Post />} />
-        {/* <Route path="*" element={<PageNotFound />} /> */}
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
       <Post/>
       <Footer />

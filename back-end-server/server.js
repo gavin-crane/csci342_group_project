@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 const app = express();
 app.use(express.json());
 const port = 1337;
@@ -26,15 +27,53 @@ const post = new mongoose.Schema({
     },
 });
 
+// schema for user
+const userSchema = new mongoose.Schema({
+  firstName: {
+    type: String,
+    required: false
+  },
+  lastName: {
+    type: String,
+    required: false
+  },
+  username: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  password: {
+    type: String,
+    required: true
+  },
+  major: {
+    type : String,
+    required: false
+  }, 
+  gradYear: {
+    type : String,
+    required: false
+  }, 
+  favLang: {
+    type : String,
+    required: false
+  } , 
+  bio: {
+    type : String,
+    required: false
+  } 
+});
+
+const User = mongoose.model('users', userSchema);
+
 mongoose.set('strictQuery', false);
 mongoose.connect(url).then(() => {
     console.log('DB Connection successful!');
-  })
-  .catch((error) => {
+})
+.catch((error) => {
     console.log('Connection error:', error);
-  });
+});
 
-const users = [];
 app.post('/api/signup', (req, res) => {
     const { username, password, confirmPassword } = req.body
     
@@ -45,47 +84,90 @@ app.post('/api/signup', (req, res) => {
         })
     }
 
-    const user = {
-        username,
-        password,
-        confirmPassword
-    }
-    users.push(user)
-
-    res.json({
-        status:'success',
-        message: 'signup successful',
-        data: {
-            user
+    bcrypt.hash(password, 12, function(err, hash) {
+        if(err) {
+            return res.json({
+                status: 'fail',
+                message: 'Failed to hash password'
+            })
         }
+        const newUser = {
+          username: username,
+          password: hash,
+          firstName: '',
+          lastName: '',
+          major: '',
+          gradYear: '',
+          favLang: '',
+          bio: ''
+        }
+        User.create(newUser).then((user) => {
+            return res.status(200).json({
+                status: 'success',
+                message: "User created successfully!",
+                data: {
+                    user
+                }
+            });
+        })
+        .catch((err) => {
+            return res.status(500).json({
+                status: 'fail',
+                message: "An error occurred while creating user",
+                err: err
+            });
+        });    
     })
     
 })
 
-app.post('/api/login', (req, res) => {
-    const { username, password } = req.body
-    
-    if (!username || !password) {
-        return res.json({
-            status: 'fail',
-            message: 'All input fields are required!'
-        })
-    }
-    const user = users.find(user => user.username === username && user.password === password)
-    if(!user) {
-        return res.json({
-            status: 'fail',
-            message: 'Invalid username or password'
-        })
-    }
-    res.json({
-        status: 'success',
-        message: 'logged in successfully',
-        data: {
-            user
-        }
-    })
 
+app.post('/api/login', async (req, res) => {
+  const { username, password } = req.body;
+
+  if (!username || !password) {
+    return res.status(400).json({
+      status: 'fail',
+      message: 'All input fields are required!',
+      data: null,
+    });
+  }
+    User.findOne({username}).then((user) => {
+        if(!user) {
+            return res.json({
+                status: 'fail',
+                message: 'Invalid email or password!'
+            })
+        }
+        bcrypt.compare(password, user.password, function(err, isCorrectPassword) {
+            if (err) {
+                return res.json({
+                    status: 'fail',
+                    message: 'Failed to compare passwords'
+                })
+            }
+            if (!isCorrectPassword) {
+                return res.json({
+                    status: 'fail',
+                    message: 'Invalid username or password'
+                })
+            }
+            res.json({
+                status: 'success',
+                message: 'Login successful!',
+                data: {
+                    user
+                }
+            })
+        })
+    })
+    .catch((err) => {
+        return res.status(500).json({
+            status: 'fail',
+            message: 'Failed to find user',
+            err: err
+        });
+    }); 
 })
 
 app.post('/api/submitPost', (req, res) => {
@@ -126,5 +208,91 @@ app.get('/api/getPost', (req, res) => {
 })
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-})
+  console.log(`Example app listening on port ${port}`);
+});
+
+
+app.post('/api/update', async (req, res) => {
+    const { username, firstName, lastName, password, major, gradYear, favLang, bio } = req.body;
+  
+    if (!username) {
+      return res.status(400).json({
+        status: 'fail',
+        message: 'Username required!',
+        data: null,
+      });
+    }
+  
+    try{
+      const user = await User.updateOne({username: {$eq:username}},
+    {
+        username: username,
+        firstName: firstName,
+        lastName: lastName,
+        password: password,
+        major: major,
+        gradYear: gradYear,
+        favLang: favLang,
+        bio: bio
+      })
+      console.log(user)
+      return res.json({
+        status: 'success',
+        message: 'User updated successfully',
+        data: {       
+          user
+        },
+      });
+    }
+    catch(error){
+      return res.status(400).json({
+        status: 'fail',
+        message: 'Error updating user',
+        data: null,
+      });
+    }
+  });
+
+
+  app.post('/api/profile', async (req, res) => {
+    const {username, id} = req.body;
+  
+    if (!username) {
+      return res.status(400).json({
+        status: 'fail',
+        message: 'Username required!',
+        data: null,
+      });
+    }
+  
+    try{
+      const user = await User.findOne({username: {$eq:username}})
+      return res.json({
+        status: 'success',
+        message: 'User updated successfully',
+        data: {       
+          user
+        },
+      });
+    }
+    catch(error){
+      return res.status(400).json({
+        status: 'fail',
+        message: 'Error updating user',
+        data: null,
+      });
+    }
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
