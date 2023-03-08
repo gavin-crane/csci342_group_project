@@ -12,18 +12,21 @@ console.log("db url: " + url);
 
 
 //schema for post
-const post = new mongoose.Schema({
-    userid:{
-        type: 'String',
+const postSchema = new mongoose.Schema({
+    userId:{
+      type: String,
+    },
+    userName: {
+      type: String,
     },
     title: {
-        type: String,
+      type: String,
     },
     body: {
-        type: String,
+      type: String,
     },
-    replies: {
-        type: Object
+    chipData: {
+      type: Object
     },
 });
 
@@ -169,42 +172,69 @@ app.post('/api/login', async (req, res) => {
         });
     }); 
 })
-
+const Post = mongoose.model('Post', postSchema);
 app.post('/api/submitPost', (req, res) => {
 
     console.log(req.body);
-    const {title, body, replies} = req.body;
-    console.log("submitPost endpoint:",title, body, replies);
+    const {userId, userName, title, body, chipData} = req.body;
+    console.log("submitPost endpoint:", userId, userName, title, body, chipData);
 
-    if (!title || !body || !replies) {
-        return res.json({
-            status: 'fail',
-            message: 'All input fields are required!'
-        })
+    if (!userId) {
+      return res.json({
+        status: 'fail',
+        message: 'no userid'
+      })
     }
-    const Post = mongoose.model('Post', post);
+    else if (!userName) {
+      return res.json({
+        status: 'fail',
+        message: 'no user name'
+      })
+    }
+    else if (!title) {
+      return res.json({
+        status: 'fail',
+        message: 'no no title'
+      })
+    }
+    else if (!body) {
+      return res.json({
+        status: 'fail',
+        message: 'no body'
+      })
+    }
+    else if (!chipData) {
+      return res.json({
+        status: 'fail',
+        message: 'no chips'
+      })
+    }
     Post.create({
+        userId,
+        userName,
         title,
         body,
-        replies,
+        chipData,
     })
     .then((newPost) => {
-        return res.status(200).json({ message: "User created successfully", pos: newPost });
+        return res.status(200).json({ message: "post created successfully", pos: newPost });
     })
     .catch((err) => {
         return res.status(500).json({ error: "An error occurred while adding a post", err: err});
     });    
 })
 
-app.get('/api/getPost', (req, res) => {
-    const {user, title, body} = req.body;
-
-    if (!user || !title || !body) {
-        return res.json({
-            status: 'fail',
-            message: 'All input fields are required!'
-        })
-    }
+app.get('/api/getPosts', async(req, res) => {
+  try {
+    // const posts = await Post.find({}).project({ title: 1, body: 1 }).toArray();
+    const posts = await Post.find();
+    console.log("recieved posts",posts);
+    res.json(posts);
+  }
+  catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Internal server error" });
+  }
 })
 
 app.listen(port, () => {

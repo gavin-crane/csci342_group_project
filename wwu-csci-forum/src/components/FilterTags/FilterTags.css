@@ -1,6 +1,44 @@
 .filterSearch input{
     width: 200px;
     position: static;
-    margin-bottom: 8px;
-    margin-top: 8px;
+
+    padding: 6px;
+    border-radius: 6px;
+    margin-left: 5px;
+    margin-right: 5px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }
+
+.filter-button-container {
+    display: flex;
+    align-items: center;      
+}
+.filter-button {
+    /* position: relative;
+    top: 50%;
+    transform: translateY(-50%); */
+
+    color: rgb(91, 91, 91);
+    border-radius: 0.3125rem;
+    padding: .5rem 1rem;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    margin-left: 6px;
+    margin-right: 6px;
+    margin-top: 5px;
+}
+/*
+.filter-button:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-radius: 0.3125rem;
+    padding: .5rem 1rem;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+  
+  } */

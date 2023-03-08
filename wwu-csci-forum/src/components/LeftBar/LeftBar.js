@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import "./LeftBar.css"
 import FilterTags from '../FilterTags/FilterTags';
 import logo from './R.jpeg';
@@ -29,6 +29,11 @@ const chipBank = [
 
 export default function LeftBar() {
 
+  //chip data
+  const [chipData, setChipData] = useState([]);
+  const handleChipDataChange = (newChipData) => {
+    setChipData(newChipData);
+  };
 
   return (
     <div className="leftBarContainer">
@@ -39,7 +44,7 @@ export default function LeftBar() {
           <h2>Forum</h2>
         </div>
       </div>
-      <FilterTags loadedChips={loadedChips} chipBank={chipBank}/>
+      <FilterTags loadedChips={loadedChips} chipBank={chipBank} onChipDataChange={handleChipDataChange}/>
     </div>
   )
 }

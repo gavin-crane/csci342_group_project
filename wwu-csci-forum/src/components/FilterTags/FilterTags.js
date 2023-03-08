@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { styled } from '@mui/material/styles';
 import Chip from '@mui/material/Chip';
 import Paper from '@mui/material/Paper';
@@ -8,12 +8,11 @@ import TagFacesIcon from '@mui/icons-material/TagFaces';
 import './FilterTags.css';
 
 
-
 const ListItem = styled('li')(({ theme }) => ({
   margin: theme.spacing(0.5),
 }));
 
-export default function FilterTags({loadedChips , chipBank}) {
+export default function FilterTags({loadedChips , chipBank, onChipDataChange}) {
 
   // handle adding and deletion of chips
   const [chipData, setChipData] = React.useState(loadedChips);
@@ -27,6 +26,11 @@ export default function FilterTags({loadedChips , chipBank}) {
       setChipData((chips) => [...chips, chipToAdd]);
     }
   };
+  // console.log("currently loaded chips in post:", chipData);
+
+  useEffect(() => {
+    onChipDataChange(chipData);
+  }, [chipData, onChipDataChange]);
 
   // handle search functionality
   const [searchTerm, setSearchTerm] = useState('');
@@ -44,9 +48,6 @@ export default function FilterTags({loadedChips , chipBank}) {
     }
   };
   // end search
-
-  
-
   return (
     <Paper
       sx={{
@@ -78,28 +79,27 @@ export default function FilterTags({loadedChips , chipBank}) {
         );
       })}
       <div className = "filterSearch">
-        <input type="text" value={searchTerm} onChange={handleSearch} placeholder="search filters" />
+        <input type="text" value={searchTerm} onChange={handleSearch} placeholder="Add and search tags!" />
       </div>
       <div>
       {!closestChip || !searchTerm ? (
           ('')
           ) : (
               chipBank.filter(data => data.label === closestChip.label).map(data => (
-              <Button sx={{color: 'black', backgroundColor: 'rgba(0, 0, 0, 0.08)'}}
-                key={data.key}
-                onClick={() => handleAdd(data.label)}
-                variant="contained"
-                color="primary"
-              >
-                {data.label}
-              </Button>
-              
+              <div className="filter-button-container">
+                <button class='filter-button'
+                  key={data.key}
+                  onClick={() => handleAdd(data.label)}
+                  variant="contained"
+                  color="primary"
+                >
+                  {data.label}
+                </button>
+              </div>
               ))
               )
             }
       </div>
-
-    
     </Paper>
   );
 }

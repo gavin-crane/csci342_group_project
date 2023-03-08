@@ -45,7 +45,7 @@ const ReplyThread = ({ reply }) => {
                     {reply.author}
                 </Typography>
                 <Typography variant='body2' color='text.secondary'>
-                    {reply.content}
+                    {reply.body}
                 </Typography>
             </CardContent>
             <CardActions>
@@ -68,7 +68,7 @@ const ReplyThread = ({ reply }) => {
     )
 }
 
-export default function MainThread({postDetails: { title, author, content }}) {
+export default function MainThread({postDetails: { title, userName, body }}) {
     const [replies, setReplies] = useState([])
     const [upvotes, setUpvotes] = useState(0)
     const [hasUpvoted, setHasUpvoted] = useState(false)
@@ -86,10 +86,10 @@ export default function MainThread({postDetails: { title, author, content }}) {
                     {title}
                 </Typography>
                 <Typography sx={{ mb: 1.5 }} variant='subtitle1' color='text.secondary'>
-                    By: {author}
+                    By: {userName}
                 </Typography>
                 <Typography variant='body2' color='text.secondary'>
-                    {content}
+                    {body}
                 </Typography>
             </CardContent>
             <CardActions>

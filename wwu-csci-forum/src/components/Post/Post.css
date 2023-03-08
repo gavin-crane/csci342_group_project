@@ -1,4 +1,9 @@
 
+  .Form {
+    display: flex;
+    flex-direction: column;
+  }
+  
   .InputTitle {
     color: #cecece;
     width: calc(100% - 0px);
@@ -75,4 +80,11 @@
     float: left;
     /* margin-bottom: 0.875rem;
     margin-left:0.875rem; */
+  }
+
+  .post-filter-tags {
+    background-color: blue;
+    width: 100%; /* Fill the maximum width of the parent container */
+    height: 100%; /* Fill the maximum height of the parent container */
+    flex-grow: 1; /* Grow downward as the child element fills */
   }
