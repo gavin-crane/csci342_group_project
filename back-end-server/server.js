@@ -12,6 +12,9 @@ console.log("db url: " + url);
 
 //schema for post
 const post = new mongoose.Schema({
+    userid:{
+        type: 'String',
+    },
     title: {
         type: String,
     },

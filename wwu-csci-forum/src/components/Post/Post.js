@@ -17,7 +17,7 @@ function Post() {
 
   return (
     <div className = "Form">
-      <h1 className='FormTitle'>Create your own forum!</h1>
+      <h1 className='FormTitle'>Post!</h1>
         <div className = "InsideForm">
             <input className = "InputTitle" type="text" placeholder="Title" value={title} onChange={event => setTitle(event.target.value)} />           
             <br />  
