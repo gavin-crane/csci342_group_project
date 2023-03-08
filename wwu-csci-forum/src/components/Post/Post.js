@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect} from 'react';
 import './Post.css'
 import Button from '../Button/Button';
 
@@ -6,6 +6,8 @@ import Button from '../Button/Button';
 function Post() {
   const [title, setTitle] = useState();
   const [body, setBody] = useState();
+  const [userId, setUserId] = useState();
+
 
   function handleSubmit(event) {
     event.preventDefault();

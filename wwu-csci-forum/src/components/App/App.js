@@ -50,7 +50,6 @@ const App = () => {
         <Route path='/post' element={<Post />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
-      <Post/>
       <Footer />
     </div>
   );
