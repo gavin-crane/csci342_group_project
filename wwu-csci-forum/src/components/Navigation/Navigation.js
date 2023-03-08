@@ -29,8 +29,8 @@ function Navigation() {
                 <div className="dropdown">
                   <button className="dropbtn">CodeTest</button>                                
                       <div className="dropdown-content">
-                        <Link to ="/coderun/5YZV">Java</Link>
-                        <Link to="/coderun/5Z00">C</Link>
+                        <Link to ="/coderun/JavaRunner">Java</Link>
+                        <Link to="/coderun/CRunner">C</Link>
                       </div>
                 </div>
               </li>
