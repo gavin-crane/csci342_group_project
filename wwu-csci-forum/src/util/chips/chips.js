@@ -1,7 +1,7 @@
 
 // default loaded search filters
 export const loadedChips = [
-    { key: 0, label: 'Python' },
+    // { key: 0, label: 'Python' },
     // { key: 1, label: 'Project' },
   ]
   
@@ -22,4 +22,5 @@ export const loadedChips = [
     { key: 12, label: 'CS 447'},
     { key: 13, label: 'C'},
     { key: 14, label: 'C++'},
+    {key: 15, label: 'Assembly'},
   ]
