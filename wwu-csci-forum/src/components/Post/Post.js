@@ -12,6 +12,7 @@ function Post() {
   const [body, setBody] = useState();
   const [userId, setUserId] = useState();
   const [userName, setUserName] = useState();
+  const [codeLink, setCode] = useState();
   // console.log("userId", userId);
 
   //currently selected chip data
@@ -35,6 +36,7 @@ function Post() {
         title,
         body,
         chipData,
+        codeLink,
       }),
     });
 
@@ -56,24 +58,16 @@ function Post() {
   return (
     <>
       <div className = "Form">
-        <h1 className='FormTitle'>Post!</h1>
-          <div className = "InsideForm">
+        
+          <form className = "InsideForm">
+              <h1 className='FormTitle'>Make a Post!</h1>
               <input className = "InputTitle" type="text" placeholder="Title" value={title} onChange={event => setTitle(event.target.value)} />           
-              <br />  
               <textarea className = "InputBody" value={body} placeholder="Text" onChange={event => setBody(event.target.value)} />
-              <br />
-              <div className = "LeftButton">
-                <Button onClick= {handleSubmit}>Back</Button>
-              </div>
-              <div className = "SaveButton">
-                <Button onClick= {handleSubmit}>Submit</Button>
-              </div>
-              <div className = "SumbitButton">
-                <Button onClick= {handleSubmit}>Save</Button>
-              </div>
+              <input className='EmbedLink' type="text" placeholder='https://replit.com/@user/repl-name' value={codeLink} onChange={event => setCode(event.target.value)} />
+              <button className = "SubmitButton" onClick= {handleSubmit}>Submit</button>
               {/* <Button onClick= {handleSubmit}>Submit</Button> */}
               {/* <button className = "Button" onClick= {handleSubmit}>Submit</button> */}
-          </div>
+          </form>
           <FilterTags className="post-filter-tags" loadedChips={loadedChips} chipBank={chipBank} onChipDataChange={handleChipDataChange}/>
 
       </div>

@@ -1,76 +1,33 @@
 .leftBarContainer {
-    /* display: flex;
-    flex-direction: column;  */
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-   
     width: 245px;
-    margin-top: 1rem; 
-    margin-left: 1rem;
-  
-  
+    margin: 1rem 1rem 1rem 3rem; 
     background-color: rgb(87, 87, 87);
     float: left;
-    /* min-height: calc(65vh - 2rem); */
-    /* height: 60vh; */
-    /* z-index: -9; */
     border-radius: 0.3125rem;
     box-shadow: 0px 0px 3px 0px rgb(0, 0, 0); 
-}
-
-.profile {
-    position: relative;
-    border-radius: 5px;
-    display: inline-block;
-
-    width: 245px;
-
-   
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    background-color:  rgb(139, 139, 139);
-    padding-bottom: 0px;
-    /* margin-bottom: 20px; */
-}
-.fill img {
-    /* flex-shrink: 0;
-    min-width: 100%;
-    min-height: 100% */
-    /* display: flex;
-    justify-content: center; */
-    /* align-items: right; */
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-    background-color: rgb(45, 46, 56);
-    margin-top: 20px;
-    border-radius: 100%;
-    width: 6rem;
-    margin-bottom: 10px;
 }
 
 .fill h1 {
     text-align: center;
     font-family: 'Courier New', sans-serif;
-
+    margin: auto;
     font-size: 30px;
     color:rgb(255, 255, 255);
     font-weight: 500;
-}
-
-.fill h2 {
-    text-align: center;
-    font-family: 'Courier New', sans-serif;
-    font-size: 12px;
-    color:rgb(255, 255, 255);
-    font-weight: 400;
+    padding: 3rem 1rem;
 }
 
 .fill {
-    padding-bottom: 20px;
-    padding-top: 10px;
+    position: relative;
+    border-radius: 5px;
+    display: inline-block;
+    width: 245px;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color:  rgb(139, 139, 139);
 }

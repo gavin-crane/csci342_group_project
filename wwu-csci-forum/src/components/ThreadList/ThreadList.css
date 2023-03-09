@@ -1,11 +1,13 @@
 .ThreadList {
     display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    flex-direction: row;
+    /* justify-content: 
+    space-around; */
+    flex-flow: row wrap;
+    /* justify-content: space-evenly; */
+    /* flex-wrap: wrap; */
    
-    /* margin: 4.4rem 10%; */
-    margin-top: 4.4rem;
-    margin-bottom: 4.4rem;
-    margin-right: 4rem 10%;
-    margin-left: 300px;
+    margin: 0;
+    padding: 0;
+    /*margin-left: 300px;*/
 }

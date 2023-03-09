@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ThreadList from "../ThreadList/ThreadList";
+import './Account.css';
 
 function DisplayAccount(user) {
 
@@ -65,7 +66,7 @@ function DisplayAccount(user) {
     }, [])
 
     return (
-        <>
+        <div className="wrapper">
             <div className="container">
                 <div className="userCard cardWidth">
                     <div className="profile-tab-nav border-right">
@@ -124,9 +125,10 @@ function DisplayAccount(user) {
                 </div>
             </div>
             <div className = "posts">
+                <h1>{userInfo.username}'s Posts</h1>
                 <ThreadList threads={posts}/>
             </div>
-        </>
+        </div>
     )
 }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import './Account.css';
+import './AccountUpdate.css';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useNavigate } from "react-router-dom";
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -50,10 +50,9 @@ function Account (){
 
     return (
         <>
-            <div className="container">
                 <form onSubmit={handleSubmit(updateHandler)}>
-                    <div className="userCard cardWidth">
-                        <div className="profile-tab-nav border-right">
+                    <div className="UserCard CardWidth">
+                        <div className="Profile-tab-nav border-right">
                             <div className="pp-4">
                                 <div className="img-circle text-center mb-3">
                                     <AccountCircleIcon sx={{
@@ -62,60 +61,60 @@ function Account (){
                                 </div>
                             </div>
                         </div>
-                        <div className="tab-content pp-4 p-md-5" id="v-pills-tabContent">
+                        <div className="Tab-content pp-4 p-md-5" id="v-pills-tabContent">
                             <div
                                 className="tab-pane fade show active"
                                 id="account"
                                 role="tabpanel"
                                 aria-labelledby="account-tab"
                             >
-                                <h3 className="myb-3 h3">Account Settings</h3>
-                                <div className="cardRow">
-                                    <div className="cardRow-md">
-                                        <div className="form-gp">
+                                <h3 className="Myb-3 h3">Account Settings</h3>
+                                <div className="CardRow">
+                                    <div className="CardRow-md">
+                                        <div className="Form-gp">
                                             <label>First Name</label>
                                             <input
                                                 type="text"
-                                                className="form-cont"
+                                                className="Form-cont"
                                                 {...register("firstName")}
                                             />
                                         </div>
                                     </div>
-                                    <div className="cardRow-md">
-                                        <div className="form-gp">
+                                    <div className="CardRow-md">
+                                        <div className="Form-gp">
                                             <label>Last Name</label>
-                                            <input type="text" className="form-cont" {...register("lastName")}/>
+                                            <input type="text" className="Form-cont" {...register("lastName")}/>
                                         </div>
                                     </div>
-                                    <div className="cardRow-md">
-                                        <div className="form-gp">
+                                    <div className="CardRow-md">
+                                        <div className="Form-gp">
                                             <label>Username</label>
-                                            <input type="text" className="form-cont" {...register("username")}/>
+                                            <input type="text" className="Form-cont" {...register("username")}/>
                                         </div>
                                     </div>
-                                    <div className="cardRow-md">
-                                        <div className="form-gp">
+                                    <div className="CardRow-md">
+                                        <div className="Form-gp">
                                             <label>Major</label>
-                                            <input type="text" className="form-cont" {...register("major")} />
+                                            <input type="text" className="Form-cont" {...register("major")} />
                                         </div>
                                     </div>
-                                    <div className="cardRow-md">
-                                        <div className="form-gp">
+                                    <div className="CardRow-md">
+                                        <div className="Form-gp">
                                             <label>Graduation Year</label>
-                                            <input type="text" className="form-cont" {...register("gradYear")}/>
+                                            <input type="text" className="Form-cont" {...register("gradYear")}/>
                                         </div>
                                     </div>
-                                    <div className="cardRow-md">
-                                        <div className="form-gp">
+                                    <div className="CardRow-md">
+                                        <div className="Form-gp">
                                             <label>Favorite Language</label>
-                                            <input type="text" className="form-cont" {...register("favLang")} />
+                                            <input type="text" className="Form-cont" {...register("favLang")} />
                                         </div>
                                     </div>
                                 </div>
-                                <div className="cardRow-md-12">
-                                    <div className="form-gp">
+                                <div className="CardRow-md-12">
+                                    <div className="Form-gp">
                                         <label>Bio</label>
-                                        <textarea className="form-cont" rows="4" type="text" {...register("bio")} ></textarea>
+                                        <textarea className="Form-cont" rows="4" type="text" {...register("bio")} ></textarea>
                                     </div>
                                 </div>
                                 <div className='cta-flex'>
@@ -126,7 +125,6 @@ function Account (){
                         </div>
                     </div>
                 </form>
-            </div>
         </>
     );
 

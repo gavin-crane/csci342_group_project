@@ -12,7 +12,7 @@ import DisplayAccount from '../Account/DisplayAccount'
 import Protected from '../../util/Protected';
 import PageNotFound from "../Pages/PageNotFound"
 import Post from "../Post/Post";
-import Account from "../Account/Account";
+import Account from "../UpdateAccount/Account";
 import './App.css';
 import CodeRunner from "../CodeRunner/CodeRunner";
 

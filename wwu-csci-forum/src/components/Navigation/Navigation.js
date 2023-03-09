@@ -3,6 +3,7 @@ import './Navigation.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from '../../store/Slices/AuthSlice';
+import logo from './R.jpeg';
 
 function Navigation() {
   const { user } = useSelector(state => state.auth);
@@ -16,15 +17,14 @@ function Navigation() {
   };
 
   return (
-    <div className="nav-container">
+    <div>
       <nav>
-        <ul>
-          {user.username ? (
-            <>
-              <li><Link to="/"><button>Home</button></Link></li>
-              <li><Link to="/profile"><button>Profile</button></Link></li>
-              <li><Link to="/post"><button>Post</button></Link></li>     
-              <li><button onClick={logoutHandler}>Logout</button></li>
+        {user.username ? (
+          <div className="nav-bar">
+            <img src = {logo} alt="logo" />
+            <ul className="left-nav">
+              <li><Link to="/"><button>CS Forum</button></Link></li>
+              <li><Link to="/post"><button>Post</button></Link></li>  
               <li>
                 <div className="dropdown">
                   <button className="dropbtn">CodeTest</button>                                
@@ -34,15 +34,25 @@ function Navigation() {
                       </div>
                 </div>
               </li>
-            </>
-          ) : (
-            <>
-              <li><Link to="/"><button>Home</button></Link></li>
+            </ul>   
+            <ul className="right-nav">
+              <li><Link to="/profile"><button>Profile</button></Link></li>
+              <li><button onClick={logoutHandler}>Logout</button></li>
+            </ul>
+          </div>
+        ) : (
+          <div className="nav-bar">
+            <img src = {logo} alt="logo" />
+            <ul className="left-nav"></ul>
+            <ul className="left-nav">
+              <li><Link to="/"><button>CS Forum</button></Link></li>
+            </ul>
+            <ul className="right-nav">
               <li><Link to="/login"><button>Log In</button></Link></li>
               <li><Link to="/signup"><button>Sign up</button></Link></li>  
-            </>
-          )}
-        </ul>
+            </ul>
+          </div>
+        )}
       </nav>
     </div>
   );

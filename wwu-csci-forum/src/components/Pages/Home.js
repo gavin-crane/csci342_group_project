@@ -13,7 +13,7 @@ export default function Home() {
     async function fetchPosts() {
       const response = await fetch('/api/getPosts');
       const data = await response.json();
-      setPosts(data);
+      setPosts(data.reverse()); // reverse to get most recent posts rendered first
     }
 
     fetchPosts();
@@ -22,10 +22,17 @@ export default function Home() {
   const [filteredPosts, setFilteredPosts] = useState(posts);
 
   useEffect(() => {
-    const filtered = posts.filter((post) => {
-      return post.chipData.some((chip) => chipData.map((c) => c.label).includes(chip.label));
-    });
-    setFilteredPosts(filtered);
+    if (chipData.length > 0) {
+      const filtered = posts.filter((post) => {
+        return post.chipData.some((chip) => chipData.map((c) => c.label).includes(chip.label));
+      });
+      setFilteredPosts(filtered);
+    }
+    else {
+      const filtered = posts;
+      setFilteredPosts(filtered);
+    }
+
   }, [chipData, posts]);
 
   return (
