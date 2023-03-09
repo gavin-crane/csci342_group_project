@@ -1,19 +1,33 @@
+.wrapper {
+  width: 100%;
+}
+
+h1 {
+  color: rgb(230, 230, 230);
+  text-align: left;
+  margin-left: 1rem;
+}
+
 .userCard {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 3em;
-  margin-bottom: 3em;
+  margin: 2rem 1rem;
   border-radius: 10px;
   background-color: #ffff;
-  box-shadow: 2px 5px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
   display: flex;
+  float: right;
+  position: relative;
+  right: 8%;
 }
 .cardWidth {
-  width: 80%;
+  width: 25%;
 }
 
 .posts {
+  width: 54%;
+  float: left;
+  margin: 2rem 1rem;
   position: relative;
+  left: 8%;
 }
 
 /* input field */
@@ -44,7 +58,6 @@
 .form-gp label {
   display: inline-block;
   margin-bottom: 0.5rem !important;
-
   color: black;
 }
 .cardRow {
@@ -151,7 +164,6 @@ textarea.form-cont {
   width: 20px;
 }
 
-@media (max-width: 700px) {
   .userCard {
     display: block;
   }
@@ -170,4 +182,4 @@ textarea.form-cont {
     padding: 15px;
     width: 96%;
   }
-}
+
