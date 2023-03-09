@@ -33,7 +33,7 @@ const ReplyForm = ({ onSubmit }) => {
         </form>
     )
 }
-
+//
 // const ReplyThread = ({ reply }) => {
 //     const [replies, setReplies] = useState([])
 //     const [upvotes, setUpvotes] = useState(0)
@@ -95,7 +95,7 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
                     justifyContent: 'space-between', 
                     marginLeft: '20px'}}>
             <CardContent sx={{ overflow: 'auto' }}>
-                <div>
+                <div className="thread-tags-container">
                 {chipData.map(item => <Chip key={item.key} label={item.label} sx={{marginRight: '4px', marginTop: '4px'}}/>)}
                 </div>
                 <Typography gutterBottom variant='h5' component='div' sx={{marginTop: '10px'}}>
@@ -128,16 +128,16 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
                 />
             )}
             <div sx={{marginLeft: '20px'}}>
-              <FormControl sx={{minWidth: 200}}>
+              <FormControl sx={{minWidth: 0, padding: 0}}>
                 <Select
                   displayEmpty
                   value=''
                   onChange={() => {}}
                   inputProps={{ 'aria-label': 'Without label' }}
                 >
-                  <MenuItem disabled value=''>
+                  <Button disabled value=''>
                     Replies
-                  </MenuItem>
+                  </Button>
                   {replies.map((reply, index) => (
                     <MenuItem key={index} value={reply.content}>
                       {reply.author}: {reply.content}
