@@ -17,7 +17,7 @@ export default function Home() {
     }
 
     fetchPosts();
-  }, []);
+  }, [posts]);
 
   const [filteredPosts, setFilteredPosts] = useState(posts);
 

@@ -120,7 +120,7 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
                         {body}
                     </Typography>
                     {codeLink && (
-                    <iframe src={codeLink} />)}
+                    <iframe src={codeLink} title="Repl embedded code"/>)}
                 </div>)}
                     {showReplies && (
                     <div>
@@ -142,6 +142,10 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
                     if (!hasUpvoted) {
                         setUpvotes(upvotes + 1)
                         setHasUpvoted(true) 
+                    }
+                    else{
+                        setUpvotes(upvotes - 1);
+                        setHasUpvoted(false);
                     }
                 }}>                    
                 Upvote
