@@ -42,9 +42,7 @@ export default function LeftBar({chipBank, loadedChips, setChipData}) {
     <div className="leftBarContainer">
       <div className = "profile">
         <div className = "fill">
-          <img src = {logo} alt="logo" />
-          <h1>Comp Sci</h1>
-          <h2>Forum</h2>
+          <h1>Filter Posts</h1>
         </div>
       </div>
       <FilterTags loadedChips={loadedChips} chipBank={chipBank} onChipDataChange={handleChipDataChange}/>

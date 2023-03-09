@@ -3,11 +3,8 @@
   overflow-x: hidden;
 }
 
-.navbar {
-  background-color: rgb(87, 87, 87);
-  height: 60px;
-}
-
 .main {
-  min-height: 100%;
+  padding-top:50px;
+  min-height: 95vh;
+
 }
