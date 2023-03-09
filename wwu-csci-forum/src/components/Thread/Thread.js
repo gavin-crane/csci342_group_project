@@ -82,22 +82,28 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
     }
 
     return (
-        <Card sx={{ maxWidth: 345, maxHeight: 500, marginTop: 2, textAlign: 'left'}}>
-            <CardContent>
+        <Card sx={{ maxWidth: 345, 
+                    maxHeight: 350, 
+                    marginTop: 2, 
+                    textAlign: 'left',    
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    justifyContent: 'space-between' }}>
+            <CardContent sx={{ overflow: 'auto' }}>
                 <div>
-                {chipData.map(item => <Chip key={item.key} label={item.label} />)}
+                {chipData.map(item => <Chip key={item.key} label={item.label} sx={{marginRight: '4px', marginTop: '4px'}}/>)}
                 </div>
-                <Typography gutterBottom variant='h5' component='div'>
+                <Typography gutterBottom variant='h5' component='div' sx={{marginTop: '10px'}}>
                     {title}
                 </Typography>
                 <Typography sx={{ mb: 1.5 }} variant='subtitle1' color='text.secondary'>
                     By: {userName}
                 </Typography>
-                <Typography variant='body2' color='text.secondary' sx={{ overflow: 'auto', maxHeight: '300px' }}>
+                <Typography variant='body2' color='text.secondary' sx={{ overflow: 'auto', maxHeight: 100}}>
                     {body}
                 </Typography>
             </CardContent>
-            <CardActions>
+            <CardActions sx={{}}>
                 <Button size='small' onClick={() => {
                     if (!hasUpvoted) {
                         setUpvotes(upvotes + 1)

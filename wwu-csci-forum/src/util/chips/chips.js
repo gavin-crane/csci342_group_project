@@ -19,4 +19,7 @@ export const loadedChips = [
     { key: 23, label: 'CS 247' },
     { key: 10, label: 'CS 401'},
     { key: 11, label: 'CS 245'},
+    { key: 12, label: 'CS 447'},
+    { key: 13, label: 'C'},
+    { key: 14, label: 'C++'},
   ]
