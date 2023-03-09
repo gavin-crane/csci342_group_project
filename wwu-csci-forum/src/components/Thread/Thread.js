@@ -73,9 +73,6 @@ const ReplyForm = ({ onSubmit }) => {
 //     )
 // }
 
-
-
-
 export default function MainThread({postDetails: { title, userName, body, chipData, userId, _id, codeLink}}) {
     const [replies, setReplies] = useState([])
     const [upvotes, setUpvotes] = useState(0)
@@ -83,7 +80,7 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
     const [showReplyForm, setShowReplyForm] = useState(false)
 
     const userIDLocal = JSON.parse(localStorage.getItem('user'))._id;
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const addReply = (replyAuthor, replyContent) => {
         console.log("reply data being passed:",replyAuthor, replyContent);
