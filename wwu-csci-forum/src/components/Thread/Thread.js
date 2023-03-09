@@ -6,6 +6,7 @@ import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import React, { useState } from 'react'
 import TextField from '@mui/material/TextField'
+import { useNavigate} from 'react-router-dom'
 
 
 const ReplyForm = ({ onSubmit }) => {
@@ -68,16 +69,24 @@ const ReplyThread = ({ reply }) => {
     )
 }
 
-export default function MainThread({postDetails: { title, userName, body }}) {
+export default function MainThread({postDetails: { title, userName, body, userId, _id, codeLink}}) {
     const [replies, setReplies] = useState([])
     const [upvotes, setUpvotes] = useState(0)
     const [hasUpvoted, setHasUpvoted] = useState(false)
     const [showReplyForm, setShowReplyForm] = useState(false)
 
+    const userIDLocal = JSON.parse(localStorage.getItem('user'))._id;
+    const navigate = useNavigate();
+
     const addReply = (replyAuthor, replyContent) => {
         setReplies([...replies, { author: replyAuthor, content: replyContent }])
         setShowReplyForm(false)
     }
+
+    if(codeLink){
+        codeLink = codeLink + "?embed=true";
+    }
+    console.log(codeLink)
 
     return (
         <Card sx={{ maxWidth: 345, marginTop: 2, }}>
@@ -91,6 +100,9 @@ export default function MainThread({postDetails: { title, userName, body }}) {
                 <Typography variant='body2' color='text.secondary'>
                     {body}
                 </Typography>
+                {codeLink ? (
+                <iframe src={codeLink} />): null}
+                
             </CardContent>
             <CardActions>
                 <Button size='small' onClick={() => {
@@ -105,6 +117,28 @@ export default function MainThread({postDetails: { title, userName, body }}) {
                 <Button size='small' onClick={() => setShowReplyForm(!showReplyForm)}>
                     Reply
                 </Button>
+
+                {userId === userIDLocal ?
+                    <Button size='small' onClick={() => {
+                            console.log("deleting post", _id)
+                            fetch('/api/deletePost', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({
+                                    userId,
+                                    _id,
+                                  })
+                            });
+                            // navigate("/", { replace: true });
+                        }
+                    }>
+                        del
+                    </Button>
+                :
+                    null}
+                
             </CardActions>
             {showReplyForm && (
                 <ReplyForm

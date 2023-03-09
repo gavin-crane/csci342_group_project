@@ -32,6 +32,9 @@ const postSchema = new mongoose.Schema({
     chipData: {
       type: Object
     },
+    codeLink: {
+      type: String
+    },
 });
 
 // schema for user
@@ -182,8 +185,8 @@ app.post('/api/login', async (req, res) => {
 app.post('/api/submitPost', (req, res) => {
 
     console.log(req.body);
-    const {userId, userName, title, body, chipData} = req.body;
-    console.log("submitPost endpoint:", userId, userName, title, body, chipData);
+    const {userId, userName, title, body, chipData, codeLink} = req.body;
+    console.log("submitPost endpoint:", userId, userName, title, body, chipData, codeLink);
 
     if (!userId) {
       return res.json({
@@ -215,12 +218,18 @@ app.post('/api/submitPost', (req, res) => {
         message: 'no chips'
       })
     }
+
+    if(!codeLink){
+      codeLink = "";
+    }
+
     Post.create({
         userId,
         userName,
         title,
         body,
         chipData,
+        codeLink,
     })
     .then((newPost) => {
         return res.status(200).json({ message: "post created successfully", pos: newPost });
@@ -228,6 +237,15 @@ app.post('/api/submitPost', (req, res) => {
     .catch((err) => {
         return res.status(500).json({ error: "An error occurred while adding a post", err: err});
     });    
+});
+
+app.post('/api/deletePost', (req,res) => {
+  
+  const {userId, _id} = req.body
+  console.log(req.body);
+  console.log("working? on ", _id, userId);
+  Post.deleteOne({_id: _id},{userId: userId}).then(console.log("deleted"));
+  res.status(200).json({message: "filler repsonse"})
 });
 
 app.get('/api/getPosts', async(req, res) => {

@@ -33,6 +33,7 @@ function Post() {
   const [body, setBody] = useState();
   const [userId, setUserId] = useState();
   const [userName, setUserName] = useState();
+  const [codeLink, setCode] = useState();
   // console.log("userId", userId);
 
   //currently selected chip data
@@ -56,6 +57,7 @@ function Post() {
         title,
         body,
         chipData,
+        codeLink,
       }),
     });
 
@@ -82,6 +84,8 @@ function Post() {
               <input className = "InputTitle" type="text" placeholder="Title" value={title} onChange={event => setTitle(event.target.value)} />           
               <br />  
               <textarea className = "InputBody" value={body} placeholder="Text" onChange={event => setBody(event.target.value)} />
+              <br />
+              <input className='EmbedLink' type="text" placeholder='https://replit.com/@user/repl-name' value={codeLink} onChange={event => setCode(event.target.value)} />
               <br />
               <div className = "LeftButton">
                 <Button onClick= {handleSubmit}>Back</Button>
