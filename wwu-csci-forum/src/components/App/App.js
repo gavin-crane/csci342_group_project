@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import { Routes, Route } from 'react-router-dom';
+import { Switch, Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../store/Slices/AuthSlice';
 import AppLoader from '../../util/loaders/AppLoader'
@@ -8,7 +8,7 @@ import SignupPage from '../Pages/SignUpPage';
 import Home from '../Pages/Home';
 import Navigation from '../Navigation/Navigation';
 import Footer from '../Footer/Footer';
-import ProfilePage from '../Pages/ProfilePage';
+import DisplayAccount from '../Account/DisplayAccount'
 import Protected from '../../util/Protected';
 import PageNotFound from "../Pages/PageNotFound"
 import Post from "../Post/Post";
@@ -41,9 +41,12 @@ const App = () => {
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<LoginPage />} />
           <Route path='/signup' element={<SignupPage />} />
+          <Route path="/profile/:username" element={
+            <DisplayAccount />
+          }></Route>
           <Route path='/profile' element={
             <Protected>
-              <ProfilePage />
+              <DisplayAccount />
             </Protected>
           }></Route>
           <Route path='/update' element={

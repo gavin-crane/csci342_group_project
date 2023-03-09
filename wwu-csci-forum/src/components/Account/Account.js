@@ -39,7 +39,7 @@ function Account (){
         .then(res => res.json())
         .then(data => {
             if (data.status === 'success') {
-                navigate("/profile", { replace: true });
+                navigate("/profile", { user: JSON.parse(localStorage.getItem('user')), replace: true });
                 console.log(data.message);
             } else {
                 console.error(data.message);

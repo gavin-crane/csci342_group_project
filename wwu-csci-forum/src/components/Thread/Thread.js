@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography'
 import React, { useState } from 'react'
 import TextField from '@mui/material/TextField'
 import Chip from '@mui/material/Chip';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const ReplyForm = ({ onSubmit }) => {
@@ -70,6 +71,7 @@ const ReplyThread = ({ reply }) => {
 }
 
 export default function MainThread({postDetails: { title, userName, body, chipData }}) {
+    const navigate = useNavigate();
     const [replies, setReplies] = useState([])
     const [upvotes, setUpvotes] = useState(0)
     const [hasUpvoted, setHasUpvoted] = useState(false)
@@ -79,6 +81,10 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
         console.log("reply data being passed:",replyAuthor, replyContent);
         setReplies([...replies, { author: replyAuthor, content: replyContent }])
         setShowReplyForm(false)
+    }
+
+    const gotoProfile = () => {
+        navigate(`/profile/${userName}`, { replace: true });
     }
 
     return (
@@ -91,7 +97,7 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
                     {title}
                 </Typography>
                 <Typography sx={{ mb: 1.5 }} variant='subtitle1' color='text.secondary'>
-                    By: {userName}
+                    By: <button onClick={gotoProfile}> {userName} </button>
                 </Typography>
                 <Typography variant='body2' color='text.secondary' sx={{ overflow: 'auto', maxHeight: '300px' }}>
                     {body}
