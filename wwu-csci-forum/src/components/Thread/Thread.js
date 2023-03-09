@@ -82,13 +82,14 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
     }
 
     return (
-        <Card sx={{ maxWidth: 345, 
-                    maxHeight: 350, 
+        <Card sx={{ width: 345, 
+                    height: 350, 
                     marginTop: 2, 
                     textAlign: 'left',    
                     display: 'flex', 
                     flexDirection: 'column', 
-                    justifyContent: 'space-between' }}>
+                    justifyContent: 'space-between', 
+                    marginLeft: '20px'}}>
             <CardContent sx={{ overflow: 'auto' }}>
                 <div>
                 {chipData.map(item => <Chip key={item.key} label={item.label} sx={{marginRight: '4px', marginTop: '4px'}}/>)}
@@ -99,7 +100,7 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
                 <Typography sx={{ mb: 1.5 }} variant='subtitle1' color='text.secondary'>
                     By: {userName}
                 </Typography>
-                <Typography variant='body2' color='text.secondary' sx={{ overflow: 'auto', maxHeight: 100}}>
+                <Typography variant='body2' color='text.secondary'>
                     {body}
                 </Typography>
             </CardContent>
