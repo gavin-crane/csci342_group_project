@@ -6,8 +6,12 @@ import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import React, { useState } from 'react'
 import TextField from '@mui/material/TextField'
-import { useNavigate} from 'react-router-dom'
+import Chip from '@mui/material/Chip';
 
+import {FormControl, Select, MenuItem} from '@mui/material'
+
+
+const userName = JSON.parse(localStorage.getItem('user')).username;
 
 const ReplyForm = ({ onSubmit }) => {
     const [replyContent, setReplyContent] = useState('')
@@ -29,47 +33,50 @@ const ReplyForm = ({ onSubmit }) => {
         </form>
     )
 }
+//
+// const ReplyThread = ({ reply }) => {
+//     const [replies, setReplies] = useState([])
+//     const [upvotes, setUpvotes] = useState(0)
+//     const [hasUpvoted, setHasUpvoted] = useState(false)
 
-const ReplyThread = ({ reply }) => {
-    const [replies, setReplies] = useState([])
-    const [upvotes, setUpvotes] = useState(0)
-    const [hasUpvoted, setHasUpvoted] = useState(false)
+//     const addReply = (replyAuthor, replyContent) => {
+//         setReplies([...replies, { author: replyAuthor, content: replyContent }])
+//     }
 
-    const addReply = (replyAuthor, replyContent) => {
-        setReplies([...replies, { author: replyAuthor, content: replyContent }])
-    }
+//     return (
+//         <Card>
+//             <CardContent>
+//                 <Typography gutterBottom variant='subtitle1'>
+//                     {reply.author}
+//                 </Typography>
+//                 <Typography variant='body2' color='text.secondary'>
+//                     {reply.body}
+//                 </Typography>
+//             </CardContent>
+//             <CardActions>
+//                 <Button size='small' onClick={() => {
+//                     if (!hasUpvoted) {
+//                         setUpvotes(upvotes + 1)
+//                         setHasUpvoted(true) 
+//                     }}}>
+//                     Upvote
+//                 </Button>
+//                 {upvotes}
+//                 {/* <Button size="small" onClick={() => addReply("Reply Author", "Reply Content")}>
+//           Reply
+//         </Button> */}
+//             </CardActions>
+//             {replies.map((reply, index) => (
+//                 <ReplyThread key={index} reply={reply} />
+//             ))}
+//         </Card>
+//     )
+// }
 
-    return (
-        <Card>
-            <CardContent>
-                <Typography gutterBottom variant='subtitle1'>
-                    {reply.author}
-                </Typography>
-                <Typography variant='body2' color='text.secondary'>
-                    {reply.body}
-                </Typography>
-            </CardContent>
-            <CardActions>
-                <Button size='small' onClick={() => {
-                    if (!hasUpvoted) {
-                        setUpvotes(upvotes + 1)
-                        setHasUpvoted(true) 
-                    }}}>
-                    Upvote
-                </Button>
-                {upvotes}
-                {/* <Button size="small" onClick={() => addReply("Reply Author", "Reply Content")}>
-          Reply
-        </Button> */}
-            </CardActions>
-            {replies.map((reply, index) => (
-                <ReplyThread key={index} reply={reply} />
-            ))}
-        </Card>
-    )
-}
 
-export default function MainThread({postDetails: { title, userName, body, userId, _id, codeLink}}) {
+
+
+export default function MainThread({postDetails: { title, userName, body, chipData, userId, _id, codeLink}}) {
     const [replies, setReplies] = useState([])
     const [upvotes, setUpvotes] = useState(0)
     const [hasUpvoted, setHasUpvoted] = useState(false)
@@ -79,6 +86,7 @@ export default function MainThread({postDetails: { title, userName, body, userId
     const navigate = useNavigate();
 
     const addReply = (replyAuthor, replyContent) => {
+        console.log("reply data being passed:",replyAuthor, replyContent);
         setReplies([...replies, { author: replyAuthor, content: replyContent }])
         setShowReplyForm(false)
     }
@@ -89,9 +97,19 @@ export default function MainThread({postDetails: { title, userName, body, userId
     console.log(codeLink)
 
     return (
-        <Card sx={{ maxWidth: 345, marginTop: 2, }}>
-            <CardContent>
-                <Typography gutterBottom variant='h5' component='div'>
+        <Card sx={{ width: 345, 
+                    height: 350, 
+                    marginTop: 2, 
+                    textAlign: 'left',    
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    justifyContent: 'space-between', 
+                    marginLeft: '20px'}}>
+            <CardContent sx={{ overflow: 'auto' }}>
+                <div className="thread-tags-container">
+                {chipData.map(item => <Chip key={item.key} label={item.label} sx={{marginRight: '4px', marginTop: '4px'}}/>)}
+                </div>
+                <Typography gutterBottom variant='h5' component='div' sx={{marginTop: '10px'}}>
                     {title}
                 </Typography>
                 <Typography sx={{ mb: 1.5 }} variant='subtitle1' color='text.secondary'>
@@ -104,7 +122,7 @@ export default function MainThread({postDetails: { title, userName, body, userId
                 <iframe src={codeLink} />): null}
                 
             </CardContent>
-            <CardActions>
+            <CardActions sx={{}}>
                 <Button size='small' onClick={() => {
                     if (!hasUpvoted) {
                         setUpvotes(upvotes + 1)
@@ -142,12 +160,31 @@ export default function MainThread({postDetails: { title, userName, body, userId
             </CardActions>
             {showReplyForm && (
                 <ReplyForm
-                    onSubmit={replyContent => addReply('Reply Author', replyContent)}
+                    onSubmit={replyContent => addReply(userName, replyContent)}
                 />
             )}
-            {replies.map((reply, index) => (
+            <div sx={{marginLeft: '20px'}}>
+              <FormControl sx={{minWidth: 0, padding: 0}}>
+                <Select
+                  displayEmpty
+                  value=''
+                  onChange={() => {}}
+                  inputProps={{ 'aria-label': 'Without label' }}
+                >
+                  <Button disabled value=''>
+                    Replies
+                  </Button>
+                  {replies.map((reply, index) => (
+                    <MenuItem key={index} value={reply.content}>
+                      {reply.author}: {reply.content}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </div>
+            {/* {replies.map((reply, index) => (
                 <ReplyThread key={index} reply={reply} />
-            ))}
+            ))} */}
         </Card>
     )
 }
