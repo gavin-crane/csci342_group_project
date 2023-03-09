@@ -1,30 +1,9 @@
 import React, { useState, useEffect} from 'react';
 import './Post.css'
 import Button from '../Button/Button';
+import {loadedChips, chipBank} from '../../util/chips/chips.js';
 import FilterTags from '../FilterTags/FilterTags';
 import { useNavigate } from "react-router-dom";
-
-// default searched filters
-const loadedChips = [
-  { key: 0, label: 'Python' },
-  { key: 1, label: 'Project' },
-  { key: 7, label: 'Research' },
-  { key: 8, label: 'CS 247' },
-]
-
-
-// current filter bank, we can add as many as needed
-const chipBank = [
-  { key: 2, label: 'CS 241' },
-  { key: 3, label: 'Internship' },
-  { key: 4, label: 'Java' },
-  { key: 5, label: 'CS 330' },
-  { key: 6, label: 'CS 345' },
-  { key: 0, label: 'Python' },
-  { key: 1, label: 'Project' },
-  { key: 7, label: 'Research' },
-]
-
 
 
 function Post() {
@@ -40,7 +19,7 @@ function Post() {
   const handleChipDataChange = (newChipData) => {
     setChipData(newChipData);
   };
-  // console.log("chip data loaded in Post", chipData)
+  console.log("chip data loaded in Post", chipData)
 
   const handleSubmit = async (event)  => {
     event.preventDefault();

@@ -6,6 +6,7 @@ import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import React, { useState } from 'react'
 import TextField from '@mui/material/TextField'
+import Chip from '@mui/material/Chip';
 
 
 const ReplyForm = ({ onSubmit }) => {
@@ -68,27 +69,31 @@ const ReplyThread = ({ reply }) => {
     )
 }
 
-export default function MainThread({postDetails: { title, userName, body }}) {
+export default function MainThread({postDetails: { title, userName, body, chipData }}) {
     const [replies, setReplies] = useState([])
     const [upvotes, setUpvotes] = useState(0)
     const [hasUpvoted, setHasUpvoted] = useState(false)
     const [showReplyForm, setShowReplyForm] = useState(false)
 
     const addReply = (replyAuthor, replyContent) => {
+        console.log("reply data being passed:",replyAuthor, replyContent);
         setReplies([...replies, { author: replyAuthor, content: replyContent }])
         setShowReplyForm(false)
     }
 
     return (
-        <Card sx={{ maxWidth: 345, marginTop: 2, }}>
+        <Card sx={{ maxWidth: 345, maxHeight: 500, marginTop: 2, textAlign: 'left'}}>
             <CardContent>
+                <div>
+                {chipData.map(item => <Chip key={item.key} label={item.label} />)}
+                </div>
                 <Typography gutterBottom variant='h5' component='div'>
                     {title}
                 </Typography>
                 <Typography sx={{ mb: 1.5 }} variant='subtitle1' color='text.secondary'>
                     By: {userName}
                 </Typography>
-                <Typography variant='body2' color='text.secondary'>
+                <Typography variant='body2' color='text.secondary' sx={{ overflow: 'auto', maxHeight: '300px' }}>
                     {body}
                 </Typography>
             </CardContent>
