@@ -11,6 +11,11 @@
   .cardWidth {
     width: 80%;
   }
+
+  .posts {
+    position: relative;
+  }
+
   /* input field */
   .form-cont {
     display: block;
