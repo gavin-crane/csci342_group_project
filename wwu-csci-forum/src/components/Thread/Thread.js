@@ -119,6 +119,8 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
                     <Typography variant='body2' color='text.secondary'>
                         {body}
                     </Typography>
+                    {codeLink && (
+                    <iframe src={codeLink} />)}
                 </div>)}
                     {showReplies && (
                     <div>
@@ -133,9 +135,6 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
                         ))}
                     </div>
                     )}
-              
-                {codeLink ? (
-                <iframe src={codeLink} />): null}
                 
             </CardContent>
             <CardActions sx={{}}>
