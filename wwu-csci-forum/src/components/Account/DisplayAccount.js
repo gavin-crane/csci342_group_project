@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ThreadList from "../ThreadList/ThreadList";
+import './Account.css';
 
-const DisplayAccount = () => {
+function DisplayAccount(user) {
+
     const navigate = useNavigate();
+    let { username } = useParams();
 
+    const [posts, setPosts] = useState( [] );
     const [userInfo, setUserInfo] = useState({
         username: '', 
         firstName: '', 
@@ -16,14 +20,18 @@ const DisplayAccount = () => {
         bio: ''
     });
 
-    const [posts, setPosts] = useState( [] );
+    var isUser = false
+
+    if (!username){
+        username = JSON.parse(localStorage.getItem('user')).username;
+        isUser = true
+    }
 
     const handleUpdateProfileClick = () => {
         navigate("/update", { replace: true });
     }
 
     useEffect(() => {
-        const user = JSON.parse(localStorage.getItem('user'));
 
         async function fetchUser() {
             const response = await fetch('/api/profile', {
@@ -31,7 +39,7 @@ const DisplayAccount = () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(user)
+                body: JSON.stringify({username : username})
             });
             const data = await response.json();
             setUserInfo(data.data.user);
@@ -45,9 +53,10 @@ const DisplayAccount = () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(user)
+                body: JSON.stringify({username: username})
             });
             const posts = await response.json();
+            console.log(posts)
             setPosts(posts);
         }
 
@@ -55,9 +64,9 @@ const DisplayAccount = () => {
         fetchPosts()
 
     }, [])
-    
+
     return (
-        <>
+        <div className="wrapper">
             <div className="container">
                 <div className="userCard cardWidth">
                     <div className="profile-tab-nav border-right">
@@ -106,16 +115,20 @@ const DisplayAccount = () => {
                                 </div>
                             </div>
                             <div className='cta-flex'>
-                                <button className="cta-b" onClick={handleUpdateProfileClick}>Update</button>
+                                { isUser
+                                    ? <button className="cta-b" onClick={handleUpdateProfileClick}>Update</button>
+                                    : ''
+                                }
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div className = "posts">
+                <h1>{userInfo.username}'s Posts</h1>
                 <ThreadList threads={posts}/>
             </div>
-        </>
+        </div>
     )
 }
 

@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography'
 import React, { useState, useRef, useEffect } from 'react'
 import TextField from '@mui/material/TextField'
 import Chip from '@mui/material/Chip';
+import { Link, useNavigate } from 'react-router-dom';
 
 import {FormControl, Select, MenuItem} from '@mui/material'
 
@@ -80,6 +81,8 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
     const [showReplyForm, setShowReplyForm] = useState(false);
     const [showReplies, setShowReplies] = useState(false);
 
+    const navigate = useNavigate();
+
     let userIDLocal = "";
     if(localStorage.getItem("user")){
        userIDLocal = JSON.parse(localStorage.getItem('user'))._id;
@@ -95,6 +98,10 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
         codeLink = codeLink + "?embed=true";
     }
     console.log(codeLink)
+
+    const gotoProfile = () => {
+        navigate(`/profile/${userName}`, { replace: true });
+    }
 
     return (
         <Card sx={{ width: 360, 
@@ -114,7 +121,7 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
                         {title}
                     </Typography>
                     <Typography sx={{ mb: 1.5 }} variant='subtitle1' color='text.secondary'>
-                        By: {userName}
+                        By: <button onClick={gotoProfile}> {userName} </button>
                     </Typography>
                     <Typography variant='body2' color='text.secondary'>
                         {body}

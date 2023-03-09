@@ -263,7 +263,7 @@ app.get('/api/getPosts', async(req, res) => {
 
 
 app.post('/api/getUserPosts', async (req, res) => {
-  const {username, id} = req.body;
+  const {username} = req.body;
   try {
     const posts = await Post.find({userName: {$eq:username}});
     console.log("recieved posts",posts);
@@ -318,7 +318,7 @@ app.post('/api/update', async (req, res) => {
 
 
 app.post('/api/profile', async (req, res) => {
-  const {username, id} = req.body;
+  const {username} = req.body;
 
   if (!username) {
     return res.status(400).json({
