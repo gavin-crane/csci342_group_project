@@ -11,7 +11,7 @@ import Chip from '@mui/material/Chip';
 import {FormControl, Select, MenuItem} from '@mui/material'
 
 
-const userName = JSON.parse(localStorage.getItem('user')).username;
+
 
 const ReplyForm = ({ onSubmit }) => {
     const [replyContent, setReplyContent] = useState('')
@@ -79,8 +79,10 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
     const [hasUpvoted, setHasUpvoted] = useState(false)
     const [showReplyForm, setShowReplyForm] = useState(false)
 
-    const userIDLocal = JSON.parse(localStorage.getItem('user'))._id;
-    // const navigate = useNavigate();
+    const userIDLocal = "";
+    if(localStorage.getItem("user")){
+       userIDLocal = JSON.parse(localStorage.getItem('user'))._id;
+    }
 
     const addReply = (replyAuthor, replyContent) => {
         console.log("reply data being passed:",replyAuthor, replyContent);
