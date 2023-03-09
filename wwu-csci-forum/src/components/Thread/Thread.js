@@ -85,8 +85,6 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
        userIDLocal = JSON.parse(localStorage.getItem('user'))._id;
     }
 
-
-
     const addReply = (replyAuthor, replyContent) => {
         console.log("reply data being passed:",replyAuthor, replyContent);
         setReplies([...replies, { author: replyAuthor, content: replyContent }])
@@ -99,7 +97,7 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
     console.log(codeLink)
 
     return (
-        <Card sx={{ width: 345, 
+        <Card sx={{ width: 360, 
                     height: 350, 
                     marginTop: 2, 
                     textAlign: 'left',    
@@ -118,14 +116,12 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
                     <Typography sx={{ mb: 1.5 }} variant='subtitle1' color='text.secondary'>
                         By: {userName}
                     </Typography>
-                
                     <Typography variant='body2' color='text.secondary'>
                         {body}
                     </Typography>
                 </div>)}
                     {showReplies && (
                     <div>
-                
                     <Typography gutterBottom variant='h5' component='div' sx={{marginTop: '10px'}}>
                         Replies:
                     </Typography>
@@ -172,7 +168,6 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
                                     _id,
                                   })
                             });
-                            // navigate("/", { replace: true });
                         }
                     }>
                         del
