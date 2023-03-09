@@ -15,15 +15,19 @@ console.log("db url: " + url);
 const postSchema = new mongoose.Schema({
     userId:{
       type: String,
+      required: true,
     },
     userName: {
       type: String,
+      required: true,
     },
     title: {
       type: String,
+      required: true,
     },
     body: {
       type: String,
+      required: true,
     },
     chipData: {
       type: Object
@@ -67,6 +71,7 @@ const userSchema = new mongoose.Schema({
   } 
 });
 
+const Post = mongoose.model('Post', postSchema);
 const User = mongoose.model('users', userSchema);
 
 mongoose.set('strictQuery', false);
@@ -172,7 +177,8 @@ app.post('/api/login', async (req, res) => {
         });
     }); 
 })
-const Post = mongoose.model('Post', postSchema);
+
+
 app.post('/api/submitPost', (req, res) => {
 
     console.log(req.body);
@@ -194,7 +200,7 @@ app.post('/api/submitPost', (req, res) => {
     else if (!title) {
       return res.json({
         status: 'fail',
-        message: 'no no title'
+        message: 'no title'
       })
     }
     else if (!body) {
@@ -222,12 +228,26 @@ app.post('/api/submitPost', (req, res) => {
     .catch((err) => {
         return res.status(500).json({ error: "An error occurred while adding a post", err: err});
     });    
-})
+});
 
 app.get('/api/getPosts', async(req, res) => {
   try {
     // const posts = await Post.find({}).project({ title: 1, body: 1 }).toArray();
     const posts = await Post.find();
+    //console.log("recieved posts",posts);
+    res.json(posts);
+  }
+  catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+
+app.post('/api/getUserPosts', async (req, res) => {
+  const {username, id} = req.body;
+  try {
+    const posts = await Post.find({userName: {$eq:username}});
     console.log("recieved posts",posts);
     res.json(posts);
   }
@@ -235,10 +255,6 @@ app.get('/api/getPosts', async(req, res) => {
     console.log(err);
     res.status(500).json({ message: "Internal server error" });
   }
-})
-
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
 });
 
 
@@ -281,43 +297,46 @@ app.post('/api/update', async (req, res) => {
         data: null,
       });
     }
-  });
+});
 
 
-  app.post('/api/profile', async (req, res) => {
-    const {username, id} = req.body;
+app.post('/api/profile', async (req, res) => {
+  const {username, id} = req.body;
+
+  if (!username) {
+    return res.status(400).json({
+      status: 'fail',
+      message: 'Username required!',
+      data: null,
+    });
+  }
+
+  try{
+    const user = await User.findOne({username: {$eq:username}})
+    return res.json({
+      status: 'success',
+      message: 'User updated successfully',
+      data: {       
+        user
+      },
+    });
+  }
+  catch(error){
+    return res.status(400).json({
+      status: 'fail',
+      message: 'Error updating user',
+      data: null,
+    })
+  }
+});
+
+
+
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
+});
   
-    if (!username) {
-      return res.status(400).json({
-        status: 'fail',
-        message: 'Username required!',
-        data: null,
-      });
-    }
-  
-    try{
-      const user = await User.findOne({username: {$eq:username}})
-      return res.json({
-        status: 'success',
-        message: 'User updated successfully',
-        data: {       
-          user
-        },
-      });
-    }
-    catch(error){
-      return res.status(400).json({
-        status: 'fail',
-        message: 'Error updating user',
-        data: null,
-      });
-    }
-  });
-
-
-
-
-
 
 
 

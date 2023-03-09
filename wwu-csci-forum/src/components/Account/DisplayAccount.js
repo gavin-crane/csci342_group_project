@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import ThreadList from "../ThreadList/ThreadList";
 
 const DisplayAccount = () => {
     const navigate = useNavigate();
-    const user = JSON.parse(localStorage.getItem('user'));
 
     const [userInfo, setUserInfo] = useState({
         username: '', 
@@ -14,31 +14,46 @@ const DisplayAccount = () => {
         gradYear: '', 
         favLang: '', 
         bio: ''
-      });
+    });
+
+    const [posts, setPosts] = useState( [] );
 
     const handleUpdateProfileClick = () => {
         navigate("/update", { replace: true });
     }
 
     useEffect(() => {
-        fetch('/api/profile', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(user)
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.status === 'success') {
-                setUserInfo(data.data.user);
-                console.log(data.data.user);
-                console.log(data.message);
-            } else {
-                console.error(data.message);
-            }
-        })
-        .catch(err => { })
+        const user = JSON.parse(localStorage.getItem('user'));
+
+        async function fetchUser() {
+            const response = await fetch('/api/profile', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(user)
+            });
+            const data = await response.json();
+            setUserInfo(data.data.user);
+        }
+
+
+
+        async function fetchPosts() {
+            const response = await fetch('/api/getUserPosts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(user)
+            });
+            const posts = await response.json();
+            setPosts(posts);
+        }
+
+        fetchUser()
+        fetchPosts()
+
     }, [])
     
     return (
@@ -56,12 +71,7 @@ const DisplayAccount = () => {
                         </div>
                     </div>
                     <div className="tab-content pp-4 p-md-5" id="v-pills-tabContent">
-                        <div
-                            className="tab-pane fade show active"
-                            id="account"
-                            role="tabpanel"
-                            aria-labelledby="account-tab"
-                        >
+                        <div className="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
                             <h3 className="myb-3 h3">Account Info</h3>
                             <div className="cardRow">
                                 <div className="cardRow-md">
@@ -101,6 +111,9 @@ const DisplayAccount = () => {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className = "posts">
+                <ThreadList threads={posts}/>
             </div>
         </>
     )
