@@ -1,105 +1,105 @@
 
-  .Form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .InputTitle {
-    color: #cecece;
-    width: calc(100% - 0px);
-    box-sizing: border-box;
-    background-color: rgb(83, 90, 94);
-    border-color: rgb(62, 68, 70);
-    outline-color: initial;
-    padding: 0.3125rem;
-    font-size: 1.625rem;
-    border-radius: 0.3125rem;
-    border: 0.0625rem solid rgb(62, 68, 70);
-    margin-top: 0.625rem;
-    outline: none;
-    font-family: Arial;
-  }
+.Form {
+  display: flex;
+  flex-direction: column;
+}
 
-  .InputBody {
-    color: #cecece;
-    background-color: rgb(83, 90, 94);
-    border-color: rgb(62, 68, 70);
-    outline-color: initial;
-    width: calc(100% - 0px);
-    box-sizing: border-box;
-    resize: none;
-    height: 12.5rem;
-    padding: 0.3125rem;
-    font-size: 1.25rem;
-    border-radius: 0.3125rem;
-    border: 0.0625rem solid rgb(62, 68, 70);
-    margin-top: 0.625rem;
-    margin-bottom: 0.625rem;
-    outline: none;
-    font-family: Arial;
-  }
+.InsideForm {
+  background-color: rgb(230, 230, 230);   
+  margin: 2.5rem 0.625rem;
+  max-width: 40.625rem;
+  overflow: hidden;
+  width: 100%;
+  border-radius: 7px;
+  padding: 0.1rem 0.8rem 1.2rem 0.8rem;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
 
-  .EmbedLink {
-    color: #cecece;
-    width: calc(100% - 0px);
-    box-sizing: border-box;
-    background-color: rgb(83, 90, 94);
-    border-color: rgb(62, 68, 70);
-    outline-color: initial;
-    padding: 0.3125rem;
-    margin-bottom: .25rem;
-    font-size: 1.625rem;
-    border-radius: 0.3125rem;
-    border: 0.0625rem solid rgb(62, 68, 70);
-    outline: none;
-    font-family: Arial;
-  }
 
-  .InsideForm {
-    background-color: rgb(48, 52, 54);     
-    margin-left: 0.625rem;
-    margin-right: 0.625rem;
-    max-width: 40.625rem;
-    overflow: hidden;
-    width: 100%
-  }
+.InputTitle {
+  color: black;
+  width: calc(100% - 30px);
+  box-sizing: border-box;
+  background-color: rgb(230, 230, 230);
+  border-color: rgb(62, 68, 70);
+  outline-color: initial;
+  padding: 0.3125rem;
+  font-size: 1.625rem;
+  border-radius: 5px;
+  border: 1px solid rgb(87, 87, 87);
+  margin: 0.625rem auto;
+  outline: none;
+  font-family: Arial;
+}
 
-  .FormTitle{
-    padding-top: 4rem;
-    color:#beb4a9;
-  }
+.InputBody {
+  color: black;
+  background-color: rgb(230, 230, 230);
+  border-color: rgb(62, 68, 70);
+  outline-color: initial;
+  width: calc(100% - 30px);
+  box-sizing: border-box;
+  resize: none;
+  height: 12.5rem;
+  padding: 0.3125rem;
+  font-size: 1.25rem;
+  border-radius: 5px;
+  border: 1px solid rgb(87, 87, 87);
+  margin: 0.625rem auto;
+  outline: none;
+  font-family: Arial;
+}
 
-  .Form {
-    background-color:  rgb(48, 52, 54);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 30%;
-  }
+.EmbedLink {
+  color: black;
+  width: calc(100% - 30px);
+  box-sizing: border-box;
+  background-color: rgb(230, 230, 230);
+  border-color: rgb(62, 68, 70);
+  outline-color: initial;
+  padding: 0.3125rem;
+  margin: 0.625rem auto;
+  font-size: 1.625rem;
+  border-radius: 5px;
+  border: 1px solid rgb(87, 87, 87);
+  outline: none;
+  font-family: Arial;
+}
 
-  .SaveButton{
-    float:right;
-    margin-left:0.875rem;
-    margin-bottom: 0.875rem;
-    flex-direction: column;
-  }
-  .SumbitButton{
-    float:right;
-    margin-bottom: 0.875rem;
-    flex-direction: column;
-  }
 
-  .LeftButton {
-    flex-direction: column;
-    float: left;
-    /* margin-bottom: 0.875rem;
-    margin-left:0.875rem; */
-  }
 
-  .post-filter-tags {
-    background-color: blue;
-    width: 100%; /* Fill the maximum width of the parent container */
-    height: 100%; /* Fill the maximum height of the parent container */
-    flex-grow: 1; /* Grow downward as the child element fills */
-  }
+.FormTitle{
+  color: black;
+}
+
+.Form {
+  background-color:  rgb(48, 52, 54);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 30%;
+}
+
+.SubmitButton{
+  background-color: #2fa92f;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 5px;
+  color: white;
+  margin: 1.5rem auto 0.5rem auto;
+  transition: all 0.2s ease-in-out 0ms;
+  width: calc(100% - 30px);
+}
+.SubmitButton:hover {
+  background-color: #248424;
+}
+
+.post-filter-tags {
+  background-color: blue;
+  width: 100%; /* Fill the maximum width of the parent container */
+  height: 100%; /* Fill the maximum height of the parent container */
+  flex-grow: 1; /* Grow downward as the child element fills */
+}

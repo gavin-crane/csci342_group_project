@@ -218,11 +218,11 @@ app.post('/api/submitPost', (req, res) => {
         message: 'no chips'
       })
     }
-
+/*
     if(!codeLink){
       codeLink = "";
     }
-
+*/
     Post.create({
         userId,
         userName,
@@ -299,7 +299,6 @@ app.post('/api/update', async (req, res) => {
         favLang: favLang,
         bio: bio
       })
-      console.log(user)
       return res.json({
         status: 'success',
         message: 'User updated successfully',

@@ -52,7 +52,7 @@ button {
   transition: all 0.2s ease-in-out 0ms;
   user-select: none;
   font-weight: bold;
-  border-radius: 3px;
+  border-radius: 5px;
 }
 
 .right-nav button {
