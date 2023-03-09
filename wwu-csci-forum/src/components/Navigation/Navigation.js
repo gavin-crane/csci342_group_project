@@ -17,10 +17,12 @@ function Navigation() {
 
   return (
     <div className="nav-container">
+    <div className="navbar-title">Mini Forum</div>
       <nav>
         <ul>
           {user.username ? (
             <>
+              
               <li><Link to="/"><button>Home</button></Link></li>
               <li><Link to="/profile"><button>Profile</button></Link></li>
               <li><Link to="/post"><button>Post</button></Link></li>     
