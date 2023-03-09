@@ -79,7 +79,7 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
     const [hasUpvoted, setHasUpvoted] = useState(false)
     const [showReplyForm, setShowReplyForm] = useState(false)
 
-    const userIDLocal = "";
+    let userIDLocal = "";
     if(localStorage.getItem("user")){
        userIDLocal = JSON.parse(localStorage.getItem('user'))._id;
     }
