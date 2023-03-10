@@ -23,7 +23,7 @@ export default function CodeRunner(){
     return (
         <div>
             <h1>Test your Code!</h1>            
-            <iframe src={go} width="600" height="400" />
+            <iframe src={go} width="1280" height="720" />
         </div>
     );
     

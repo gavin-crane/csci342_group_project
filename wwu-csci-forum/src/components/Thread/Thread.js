@@ -110,22 +110,25 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
                     textAlign: 'left',    
                     display: 'flex', 
                     flexDirection: 'column', 
-                    justifyContent: 'space-between', 
+                    justifyContent: 'space-between',
+                   
                     marginLeft: '20px'}}>
             <CardContent sx={{ overflow: 'auto', height: '100%' }}>
                 {!showReplies && (<div>
                     <div className="thread-tags-container">
-                    {chipData.map(item => <Chip key={item.key} label={item.label} sx={{marginRight: '4px', marginTop: '4px'}}/>)}
-                    </div>
-                    <Typography gutterBottom variant='h5' component='div' sx={{marginTop: '10px'}}>
+                        {chipData.map(item => <Chip key={item.key} label={item.label} sx={{marginRight: '4px', marginTop: '4px', }}/>)}
+                    </div>      
+                    <Typography gutterBottom variant='h5' component='div' sx={{marginTop: '10px', }}>
                         {title}
                     </Typography>
                     <Typography sx={{ mb: 1.5 }} variant='subtitle1' color='text.secondary'>
                         By: <button onClick={gotoProfile}> {userName} </button>
                     </Typography>
+                    
                     <Typography variant='body2' color='text.secondary'>
                         {body}
                     </Typography>
+                  
                     {codeLink && (
                     <iframe src={codeLink} title="Repl embedded code"/>)}
                 </div>)}
