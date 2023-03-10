@@ -27,7 +27,7 @@ function Navigation() {
               <li><Link to="/post"><button>Post</button></Link></li>  
               <li>
                 <div className="dropdown">
-                  <button className="dropbtn">CodeTest</button>                                
+                  <button className="dropbtn">Code Test</button>                                
                       <div className="dropdown-content">
                         <Link to ="/coderun/JavaRunner">Java</Link>
                         <Link to="/coderun/CRunner">C</Link>
