@@ -1,9 +1,10 @@
 .UserCard {
     margin: 2rem auto;
     border-radius: 10px;
-    background-color: #f0f0f0;
+    background-color: #46494d;
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
     display: flex;
+    color: white;
 }
 .CardWidth {
     width: 85%;
@@ -18,16 +19,16 @@
     padding: 0.375rem 0.75rem;
     font-size: 0.8rem;
     line-height: 1.5;
-    color: #383c41;
-    background-color: #f0f0f0;
+    color: white;
+    background-color: #46494d;
     background-clip: padding-box;
-    border: 1px solid #bbbec2;
+    border: 1px solid #8a8b8b;
     border-radius: 5px;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 .Form-cont:focus {
-    color: #383c41;
-    background-color: #f0f0f0;
+    color: white;
+    background-color: #4c4f52;
     border-color: #80bdff;
     outline: 0;
     box-shadow: 0;
@@ -38,7 +39,7 @@
 .Form-gp label {
     display: inline-block;
     margin-bottom: 0.5rem !important;
-    color: black;
+    color: white;
 }
 .CardRow {
     display: grid;
@@ -49,6 +50,7 @@
 
 .Myb-3 {
     margin-bottom: 1rem !important;
+    color: white;
 }
 .h3 {
     font-size: 1.45rem;
@@ -82,10 +84,10 @@ textarea.Form-cont {
     display: flex;
 }
 .Border-right {
-    border-right: 1px solid #dee2e6 !important;
+    border-right: 1px solid #8a8b8b !important;
 }
 .Cta-b {
-    background-color: #2fa92f;
+    background-color: #32b632;
     border: none;
     cursor: pointer;
     padding: 10px;
@@ -96,7 +98,7 @@ textarea.Form-cont {
     width: 90%;
 }
 .Cta-b:hover {
-    background-color: #248424;
+    background-color: #2ca02c;
     color: #fff;
 }
 

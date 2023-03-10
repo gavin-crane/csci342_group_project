@@ -10,6 +10,7 @@ import Chip from '@mui/material/Chip';
 import { Link, useNavigate } from 'react-router-dom';
 
 import {FormControl, Select, MenuItem} from '@mui/material'
+import './Thread.css'
 
 
 
@@ -111,22 +112,23 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
                     display: 'flex', 
                     flexDirection: 'column', 
                     justifyContent: 'space-between',
-                    backgroundColor: '#f0f0f0',
+                    backgroundColor: '#46494d',
+                    color: '#fff',
                     borderRadius: 2.5,
                     marginLeft: '20px'}}>
             <CardContent sx={{ overflow: 'auto', height: '100%' }}>
                 {!showReplies && (<div>
                     <div className="thread-tags-container">
-                        {chipData.map(item => <Chip key={item.key} label={item.label} sx={{marginRight: '4px', marginTop: '4px', }}/>)}
+                        {chipData.map(item => <Chip key={item.key} label={item.label} sx={{marginRight: '4px', marginTop: '4px', backgroundColor: '#e0e0e0' }}/>)}
                     </div>      
-                    <Typography gutterBottom variant='h5' component='div' sx={{marginTop: '10px', }}>
+                    <Typography gutterBottom variant='h5' component='div' sx={{marginTop: '10px', fontWeight: 'bold' }}>
                         {title}
                     </Typography>
-                    <Typography sx={{ mb: 1.5 }} variant='subtitle1' color='text.secondary'>
-                        By: <button onClick={gotoProfile}> {userName} </button>
+                    <Typography sx={{ mb: 1.5, color: '#ffffff', fontWeight:'bold' }} variant='subtitle1' color='text.secondary'>
+                        By: <button className="profile-button" onClick={gotoProfile}> {userName} </button>
                     </Typography>
                     
-                    <Typography variant='body2' color='text.secondary'>
+                    <Typography sx={{ color: '#e0e0e0' }} variant='body2' color='text.secondary'>
                         {body}
                     </Typography>
                   
@@ -149,7 +151,7 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
                 
             </CardContent>
             <CardActions sx={{}}>
-                <Button size='small' onClick={() => {
+                <Button sx={{color: '#b3cdf5'}} size='small' onClick={() => {
                     if (!hasUpvoted) {
                         setUpvotes(upvotes + 1)
                         setHasUpvoted(true) 
@@ -162,15 +164,15 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
                 Upvote
                 </Button>
                 {upvotes}
-                <Button size='small' onClick={() => setShowReplyForm(!showReplyForm)}>
+                <Button sx={{color: '#b3cdf5'}} size='small' onClick={() => setShowReplyForm(!showReplyForm)}>
                     Reply
                 </Button>
-                <Button size='small' onClick={() => setShowReplies(!showReplies)}>
+                <Button sx={{color: '#b3cdf5'}} size='small' onClick={() => setShowReplies(!showReplies)}>
                     Replies
                 </Button>
 
                 {userId === userIDLocal ?
-                    <Button size='small' onClick={() => {
+                    <Button sx={{color: '#b3cdf5'}} size='small' onClick={() => {
                             console.log("deleting post", _id)
                             fetch('/api/deletePost', {
                                 method: 'POST',
@@ -191,7 +193,7 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
                 
             </CardActions>
             {showReplyForm && (
-                <ReplyForm
+                <ReplyForm className="reply-form" sx={{color: '#b3cdf5'}}
                     onSubmit={replyContent => addReply(userName, replyContent)}
                 />
             )}

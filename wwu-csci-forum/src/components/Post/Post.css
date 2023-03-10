@@ -2,45 +2,50 @@
 .Form {
   display: flex;
   flex-direction: column;
+  position: relative;
+  background-color:  rgb(29, 33, 34);
+  justify-content: center;
+  align-items: center;
+  height: 30%;
 }
 
 .InsideForm {
-  background-color: #f0f0f0;   
+  background-color: #46494d;   
   margin: 2.5rem 0.625rem;
   max-width: 40.625rem;
   overflow: hidden;
   width: 100%;
-  border-radius: 7px;
+  border-radius: 10px;
   padding: 0.1rem 0.8rem 1.2rem 0.8rem;
   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 
 
 .InputTitle {
-  color: #383c41;
+  color: white;
   width: calc(100% - 30px);
   box-sizing: border-box;
-  background-color: #f0f0f0;
+  background-color: #46494d;
   outline-color: initial;
   padding: 0.3125rem;
   font-size: 1.625rem;
   border-radius: 5px;
-  border: 1px solid #bbbec2;
+  border: 1px solid #8a8b8b;
   margin: 0.625rem auto;
   outline: none;
   font-family: Arial;
 }
 .InputTitle:focus {
-  color: #383c41;
-  background-color: #f0f0f0;
+  color: white;
+  background-color: #4c4f52;
   border-color: #80bdff;
   outline: 0;
   box-shadow: 0;
 }
 
 .InputBody {
-  color: #383c41;
-  background-color: #f0f0f0;
+  color: white;
+  background-color: #46494d;
   outline-color: initial;
   width: calc(100% - 30px);
   box-sizing: border-box;
@@ -49,36 +54,36 @@
   padding: 0.3125rem;
   font-size: 1.25rem;
   border-radius: 5px;
-  border: 1px solid #bbbec2;
+  border: 1px solid #8a8b8b;
   margin: 0.625rem auto;
   outline: none;
   font-family: Arial;
 }
 .InputBody:focus {
-  color: #383c41;
-  background-color: #f0f0f0;
+  color: white;
+  background-color: #4c4f52;
   border-color: #80bdff;
   outline: 0;
   box-shadow: 0;
 }
 
 .EmbedLink {
-  color: #383c41;
+  color: white;
   width: calc(100% - 30px);
   box-sizing: border-box;
-  background-color: #f0f0f0;
+  background-color: #46494d;
   outline-color: initial;
   padding: 0.3125rem;
   margin: 0.625rem auto;
   font-size: 1.625rem;
   border-radius: 5px;
-  border: 1px solid #bbbec2;
+  border: 1px solid #8a8b8b;
   outline: none;
   font-family: Arial;
 }
 .EmbedLink:focus {
-  color: #383c41;
-  background-color: #f0f0f0;
+  color: white;
+  background-color: #4c4f52;
   border-color: #80bdff;
   outline: 0;
   box-shadow: 0;
@@ -87,20 +92,13 @@
 
 
 .FormTitle{
-  color: black;
+  color: white;
+  text-align: center;
 }
 
-.Form {
-  background-color:  rgb(48, 52, 54);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 30%;
-}
 
 .SubmitButton{
-  background-color: #2fa92f;
+  background-color: #32b632;
   border: none;
   cursor: pointer;
   padding: 10px;
@@ -112,7 +110,7 @@
   width: calc(100% - 30px);
 }
 .SubmitButton:hover {
-  background-color: #248424;
+  background-color: #2ca02c;
 }
 
 .post-filter-tags {
@@ -120,4 +118,17 @@
   width: 100%; /* Fill the maximum width of the parent container */
   height: 100%; /* Fill the maximum height of the parent container */
   flex-grow: 1; /* Grow downward as the child element fills */
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #aaaaaa;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #aaaaaa;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #aaaaaa;
 }

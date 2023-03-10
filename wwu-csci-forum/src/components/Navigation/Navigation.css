@@ -30,7 +30,7 @@ nav ul {
   height: 46px;
   width: 100%;
   /*background-color: rgb(87, 87, 87);*/
-  background-color:  rgb(59, 65, 68);
+  background-color:  rgb(49, 54, 58);
   position: fixed;
   box-shadow: 0 3px 4px 0 rgba(0,0,0,.2);
   z-index: 2;
@@ -57,17 +57,17 @@ button {
 }
 
 .right-nav button {
-  background-color: #f0f0f0;
+  background-color: #ffffff;
 }
 
 .left-nav button {
-  color: rgb(230, 230, 230);
-  background-color: rgb(59, 65, 68);
+  color: #ffffff;
+  background-color: rgb(49, 54, 58);
   
 }
 
 .left-nav button:hover {
-    background-color: #f0f0f0;
+    background-color: #ffffff;
     color: black;
 }
 
@@ -85,7 +85,7 @@ button {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f0f0f0;
+  background-color: #ffffff;
   min-width: 86px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   border-radius: 3px;
