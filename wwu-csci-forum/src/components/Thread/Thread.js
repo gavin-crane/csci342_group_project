@@ -112,7 +112,7 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
                     flexDirection: 'column', 
                     justifyContent: 'space-between',
                     backgroundColor: '#f0f0f0',
-                    borderRadius: 2,
+                    borderRadius: 2.5,
                     marginLeft: '20px'}}>
             <CardContent sx={{ overflow: 'auto', height: '100%' }}>
                 {!showReplies && (<div>

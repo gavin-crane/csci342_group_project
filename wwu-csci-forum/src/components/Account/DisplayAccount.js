@@ -75,7 +75,7 @@ function DisplayAccount(user) {
                                     fontSize: "120px"
                                 }} />
                             </div>
-                            { <h4>{userInfo.firstName} {userInfo.lastName}</h4> }
+                            { <h4>{userInfo.username}</h4> }
                         </div>
                     </div>
                     <div className="tab-content pp-4 p-md-5" id="v-pills-tabContent">
@@ -83,8 +83,8 @@ function DisplayAccount(user) {
                             <div className="cardRow">
                                 <div className="cardRow-md">
                                     <div className="form-gp">
-                                        <label>Username</label>
-                                        <label type="text" className="form-cont" >{userInfo.username}</label>
+                                        <label>Name</label>
+                                        <label type="text" className="form-cont" >{userInfo.firstName} {userInfo.lastName}</label>
                                     </div>
                                 </div>
                                 <div className="cardRow-md">
