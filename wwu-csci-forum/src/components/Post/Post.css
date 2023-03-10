@@ -17,25 +17,30 @@
 
 
 .InputTitle {
-  color: black;
+  color: #383c41;
   width: calc(100% - 30px);
   box-sizing: border-box;
   background-color: #f0f0f0;
-  border-color: rgb(62, 68, 70);
   outline-color: initial;
   padding: 0.3125rem;
   font-size: 1.625rem;
   border-radius: 5px;
-  border: 1px solid rgb(87, 87, 87);
+  border: 1px solid #bbbec2;
   margin: 0.625rem auto;
   outline: none;
   font-family: Arial;
 }
+.InputTitle:focus {
+  color: #383c41;
+  background-color: #f0f0f0;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0;
+}
 
 .InputBody {
-  color: black;
+  color: #383c41;
   background-color: #f0f0f0;
-  border-color: rgb(62, 68, 70);
   outline-color: initial;
   width: calc(100% - 30px);
   box-sizing: border-box;
@@ -44,26 +49,39 @@
   padding: 0.3125rem;
   font-size: 1.25rem;
   border-radius: 5px;
-  border: 1px solid rgb(87, 87, 87);
+  border: 1px solid #bbbec2;
   margin: 0.625rem auto;
   outline: none;
   font-family: Arial;
 }
+.InputBody:focus {
+  color: #383c41;
+  background-color: #f0f0f0;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0;
+}
 
 .EmbedLink {
-  color: black;
+  color: #383c41;
   width: calc(100% - 30px);
   box-sizing: border-box;
   background-color: #f0f0f0;
-  border-color: rgb(62, 68, 70);
   outline-color: initial;
   padding: 0.3125rem;
   margin: 0.625rem auto;
   font-size: 1.625rem;
   border-radius: 5px;
-  border: 1px solid rgb(87, 87, 87);
+  border: 1px solid #bbbec2;
   outline: none;
   font-family: Arial;
+}
+.EmbedLink:focus {
+  color: #383c41;
+  background-color: #f0f0f0;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0;
 }
 
 

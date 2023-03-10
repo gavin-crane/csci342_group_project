@@ -121,8 +121,8 @@ function Account (){
                                     </div>
                                 </div>
                                 <div className='cta-flex'>
-                                    <button className="cta-b">Update</button>
-                                    <button className="cta-c" onClick={handleCancelClick}>Cancel</button>
+                                    <button className="Cta-b">Update</button>
+                                    <button className="Cta-b" onClick={handleCancelClick}>Cancel</button>
                                 </div>
                             </div>
                         </div>

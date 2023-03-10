@@ -56,14 +56,13 @@ function DisplayAccount(user) {
                 body: JSON.stringify({username: username})
             });
             const posts = await response.json();
-            console.log(posts)
             setPosts(posts);
         }
 
         fetchUser()
         fetchPosts()
 
-    }, [])
+    }, [username])
 
     return (
         <div className="wrapper">
@@ -81,7 +80,6 @@ function DisplayAccount(user) {
                     </div>
                     <div className="tab-content pp-4 p-md-5" id="v-pills-tabContent">
                         <div className="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
-                            <h3 className="myb-3 h3">Account Info</h3>
                             <div className="cardRow">
                                 <div className="cardRow-md">
                                     <div className="form-gp">
