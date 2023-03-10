@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
 const formSchema = z.object({
-    username: z.string(),
+
     firstName: z.string(),
     lastName: z.string(),
     major: z.string(),
@@ -18,6 +18,7 @@ const formSchema = z.object({
 
 function Account (){
     const navigate = useNavigate();
+    const user = JSON.parse(localStorage.getItem('user'));
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: zodResolver(formSchema)
@@ -28,7 +29,9 @@ function Account (){
     }
 
     const updateHandler = (data) => {
-        console.log(data.data)
+        console.log(user.username)
+        data.username = user.username;
+        console.log(JSON.stringify(data))
         fetch('/api/update', {
             method: 'POST',
             headers: {
@@ -52,7 +55,7 @@ function Account (){
         <>
                 <form onSubmit={handleSubmit(updateHandler)}>
                     <div className="UserCard CardWidth">
-                        <div className="Profile-tab-nav border-right">
+                        <div className="Profile-tab-nav Border-right">
                             <div className="pp-4">
                                 <div className="img-circle text-center mb-3">
                                     <AccountCircleIcon sx={{
@@ -89,7 +92,7 @@ function Account (){
                                     <div className="CardRow-md">
                                         <div className="Form-gp">
                                             <label>Username</label>
-                                            <input type="text" className="Form-cont" {...register("username")}/>
+                                            <label className="Form-cont">{user.username}</label>
                                         </div>
                                     </div>
                                     <div className="CardRow-md">
