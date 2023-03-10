@@ -5,7 +5,7 @@
 }
 
 .InsideForm {
-  background-color: rgb(230, 230, 230);   
+  background-color: #f0f0f0;   
   margin: 2.5rem 0.625rem;
   max-width: 40.625rem;
   overflow: hidden;
@@ -20,7 +20,7 @@
   color: black;
   width: calc(100% - 30px);
   box-sizing: border-box;
-  background-color: rgb(230, 230, 230);
+  background-color: #f0f0f0;
   border-color: rgb(62, 68, 70);
   outline-color: initial;
   padding: 0.3125rem;
@@ -34,7 +34,7 @@
 
 .InputBody {
   color: black;
-  background-color: rgb(230, 230, 230);
+  background-color: #f0f0f0;
   border-color: rgb(62, 68, 70);
   outline-color: initial;
   width: calc(100% - 30px);
@@ -54,7 +54,7 @@
   color: black;
   width: calc(100% - 30px);
   box-sizing: border-box;
-  background-color: rgb(230, 230, 230);
+  background-color: #f0f0f0;
   border-color: rgb(62, 68, 70);
   outline-color: initial;
   padding: 0.3125rem;

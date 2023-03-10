@@ -11,12 +11,12 @@ h1 {
 .userCard {
   margin: 2rem 1rem;
   border-radius: 10px;
-  background-color: #ffff;
+  background-color: #f0f0f0;
   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
-  display: flex;
   float: right;
   position: relative;
   right: 8%;
+  display: block;
 }
 .cardWidth {
   width: 25%;
@@ -25,7 +25,7 @@ h1 {
 .posts {
   width: 54%;
   float: left;
-  margin: 2rem 1rem;
+  margin: 1rem 1rem 2rem 1rem;
   position: relative;
   left: 8%;
 }
@@ -39,15 +39,16 @@ h1 {
   font-size: 0.8rem;
   line-height: 1.5;
   color: #495057;
-  background-color: #fff;
+  background-color: #f0f0f0;
   background-clip: padding-box;
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  word-wrap: break-word;
 }
 .form-cont:focus {
   color: #495057;
-  background-color: #fff;
+  background-color: #f0f0f0;
   border-color: #80bdff;
   outline: 0;
   box-shadow: 0;
@@ -65,9 +66,11 @@ h1 {
   grid-template-columns: 1fr 1fr;
   width: 100%;
   grid-column-gap: 1rem;
+  grid-template-columns: 1fr;
 }
 
 .myb-3 {
+  margin-top: 0;
   margin-bottom: 1rem !important;
 }
 .h3 {
@@ -78,9 +81,7 @@ h1 {
 .pp-4 {
   padding: 1.5rem;
 }
-textarea {
-  resize: vertical;
-}
+
 .profile-tab-nav {
   text-align: center;
 }
@@ -91,19 +92,14 @@ textarea {
   width: 100%;
   margin-right: 27px;
 }
-textarea.form-cont {
-  height: auto;
-  padding: 0;
-}
+
 .cardRow-md-12.form-cont {
   position: relative;
 }
 .cta-flex {
   display: flex;
 }
-.border-right {
-  border-right: 1px solid #dee2e6 !important;
-}
+
 .cta-b {
   background-color: #2fa92f;
   color: #fff;
@@ -118,22 +114,7 @@ textarea.form-cont {
   cursor: pointer;
   font-size: 16px;
 }
-.cta-c {
-  background-color: #2fa92f;
-  color: #fff;
-  padding: 14px 20px;
-  margin-top: 10px;
-  margin-left: 15px;
-  margin-bottom: 20px;
-  width: 100%;
-  border-radius: 10px;
-  border: none;
-  font-weight: 600;
-  cursor: pointer;
-  font-size: 16px;
-}
-.cta-b:hover,
-.cta-c:hover {
+.cta-b:hover {
   background-color: #248424;
   color: #fff;
 }
@@ -164,22 +145,7 @@ textarea.form-cont {
   width: 20px;
 }
 
-  .userCard {
-    display: block;
-  }
-  .cardRow {
-    grid-template-columns: 1fr;
-  }
-  .border-right {
-    border-right: 0 !important;
-  }
-  div.form-gp,
-  input.form-cont {
-    margin: 5px;
-  }
-  input.form-cont {
-    margin: 5px;
-    padding: 15px;
-    width: 96%;
-  }
-
+div.form-gp,
+input.form-cont {
+  margin: 5px;
+}

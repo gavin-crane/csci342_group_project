@@ -104,13 +104,14 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
     }
 
     return (
-        <Card sx={{ width: 360, 
+        <Card   sx={{ width: 360, 
                     height: 350, 
                     marginTop: 2, 
                     textAlign: 'left',    
                     display: 'flex', 
                     flexDirection: 'column', 
                     justifyContent: 'space-between',
+                    backgroundColor: '#f0f0f0',
                    
                     marginLeft: '20px'}}>
             <CardContent sx={{ overflow: 'auto', height: '100%' }}>

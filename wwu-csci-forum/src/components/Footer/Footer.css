@@ -2,7 +2,7 @@
 .footer {
     /* flex-basis: 0; */
     margin-top: 20px;
-    background-color: rgb(230, 230, 230);
+    background-color: #f0f0f0;
     display: inline-block;
     position: relative;
     color: #6E7072;

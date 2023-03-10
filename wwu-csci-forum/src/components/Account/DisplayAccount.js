@@ -76,7 +76,7 @@ function DisplayAccount(user) {
                                     fontSize: "120px"
                                 }} />
                             </div>
-                            { <h4 className="text-center">{userInfo.firstName} {userInfo.lastName}</h4> }
+                            { <h4>{userInfo.firstName} {userInfo.lastName}</h4> }
                         </div>
                     </div>
                     <div className="tab-content pp-4 p-md-5" id="v-pills-tabContent">
