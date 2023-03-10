@@ -27,4 +27,5 @@ export const loadedChips = [
     {key: 17, label: 'JavaScript'},
     {key: 18, label: 'CS 367'},
     {key: 19, label: 'CS 305'},
+    {key: 20, label: 'Racket'},
   ]
