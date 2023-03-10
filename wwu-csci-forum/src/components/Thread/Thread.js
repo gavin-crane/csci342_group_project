@@ -85,12 +85,14 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
     const navigate = useNavigate();
 
     let userIDLocal = "";
+    let userNameLocal = "";
     if(localStorage.getItem("user")){
        userIDLocal = JSON.parse(localStorage.getItem('user'))._id;
+       userNameLocal = JSON.parse(localStorage.getItem('user')).username;
     }
 
     const addReply = (replyAuthor, replyContent) => {
-        console.log("reply data being passed:",replyAuthor, replyContent);
+        // console.log("reply data being passed:",replyAuthor, replyContent);
         setReplies([...replies, { author: replyAuthor, content: replyContent }])
         setShowReplyForm(false)
     }
@@ -194,11 +196,9 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
             </CardActions>
             {showReplyForm && (
                 <ReplyForm className="reply-form" sx={{color: '#b3cdf5'}}
-                    onSubmit={replyContent => addReply(userName, replyContent)}
+                    onSubmit={replyContent => addReply(userNameLocal, replyContent)}
                 />
             )}
-            <div sx={{}}>
-            </div>
         </Card>
     )
 }
