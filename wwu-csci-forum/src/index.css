@@ -14,3 +14,20 @@ code {
     monospace;
 }
 
+/* Define the styles for the scrollbar */
+::-webkit-scrollbar {
+  width: 14px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #46494d;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(49, 54, 58);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #aaa;
+}

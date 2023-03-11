@@ -32,45 +32,6 @@ const ReplyForm = ({ onSubmit }) => {
         </form>
     )
 }
-//
-// const ReplyThread = ({ reply }) => {
-//     const [replies, setReplies] = useState([])
-//     const [upvotes, setUpvotes] = useState(0)
-//     const [hasUpvoted, setHasUpvoted] = useState(false)
-
-//     const addReply = (replyAuthor, replyContent) => {
-//         setReplies([...replies, { author: replyAuthor, content: replyContent }])
-//     }
-
-//     return (
-//         <Card>
-//             <CardContent>
-//                 <Typography gutterBottom variant='subtitle1'>
-//                     {reply.author}
-//                 </Typography>
-//                 <Typography variant='body2' color='text.secondary'>
-//                     {reply.body}
-//                 </Typography>
-//             </CardContent>
-//             <CardActions>
-//                 <Button size='small' onClick={() => {
-//                     if (!hasUpvoted) {
-//                         setUpvotes(upvotes + 1)
-//                         setHasUpvoted(true) 
-//                     }}}>
-//                     Upvote
-//                 </Button>
-//                 {upvotes}
-//                 {/* <Button size="small" onClick={() => addReply("Reply Author", "Reply Content")}>
-//           Reply
-//         </Button> */}
-//             </CardActions>
-//             {replies.map((reply, index) => (
-//                 <ReplyThread key={index} reply={reply} />
-//             ))}
-//         </Card>
-//     )
-// }
 
 export default function MainThread({postDetails: { title, userName, body, chipData, userId, _id, codeLink}}) {
 
