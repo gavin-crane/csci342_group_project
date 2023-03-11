@@ -35,6 +35,9 @@ const postSchema = new mongoose.Schema({
     codeLink: {
       type: String
     },
+    replies: {
+      type: []
+    }
 });
 
 // schema for user
@@ -180,13 +183,41 @@ app.post('/api/login', async (req, res) => {
         });
     }); 
 })
+app.post('/api/submitReply', async (req, res) => {
+  const { postID, userID, author, content } = req.body;
+  console.log("submit comment userID", userID);
+  console.log("submit comment author", author);
+  console.log("submit comment content", content);
 
+  try {
+    const post = await Post.findOne({_id:postID});
+
+    if (!post) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+
+    const newReply = {
+      userID,
+      author,
+      content,
+    };
+
+    post.replies.push(newReply);
+
+    await post.save();
+
+    res.status(200).json({"replies":post.replies});
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
 
 app.post('/api/submitPost', (req, res) => {
 
-    console.log(req.body);
-    const {userId, userName, title, body, chipData, codeLink} = req.body;
-    console.log("submitPost endpoint:", userId, userName, title, body, chipData, codeLink);
+    // console.log(req.body);
+    const {userId, userName, title, body, chipData, codeLink, replies} = req.body;
+    // console.log("submitPost endpoint:", userId, userName, title, body, chipData, codeLink);
 
     if (!userId) {
       return res.json({
@@ -218,6 +249,12 @@ app.post('/api/submitPost', (req, res) => {
         message: 'no chips'
       })
     }
+    else if (!replies) {
+      return res.json({
+        status: 'fail',
+        message: 'no chips'
+      })
+    }
 /*
     if(!codeLink){
       codeLink = "";
@@ -230,6 +267,7 @@ app.post('/api/submitPost', (req, res) => {
         body,
         chipData,
         codeLink,
+        replies: replies || []
     })
     .then((newPost) => {
         return res.status(200).json({ message: "post created successfully", pos: newPost });
@@ -240,7 +278,6 @@ app.post('/api/submitPost', (req, res) => {
 });
 
 app.post('/api/deletePost', (req,res) => {
-  
   const {userId, _id} = req.body
   console.log(req.body);
   console.log("working? on ", _id, userId);
@@ -254,6 +291,18 @@ app.get('/api/getPosts', async(req, res) => {
     const posts = await Post.find();
     //console.log("recieved posts",posts);
     res.json(posts);
+  }
+  catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+app.get('/api/getReplies', async(req, res) => {
+  const postID = req.query.postID;
+  try {
+    const post = await Post.findOne({_id:postID});
+    res.json(post.replies);
   }
   catch (err) {
     console.log(err);

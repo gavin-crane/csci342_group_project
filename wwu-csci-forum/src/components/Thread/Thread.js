@@ -12,9 +12,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import {FormControl, Select, MenuItem} from '@mui/material'
 import './Thread.css'
 
-
-
-
 const ReplyForm = ({ onSubmit }) => {
     const [replyContent, setReplyContent] = useState('')
 
@@ -76,6 +73,7 @@ const ReplyForm = ({ onSubmit }) => {
 // }
 
 export default function MainThread({postDetails: { title, userName, body, chipData, userId, _id, codeLink}}) {
+
     const [replies, setReplies] = useState([]);
     const [upvotes, setUpvotes] = useState(0);
     const [hasUpvoted, setHasUpvoted] = useState(false);
@@ -91,16 +89,49 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
        userNameLocal = JSON.parse(localStorage.getItem('user')).username;
     }
 
-    const addReply = (replyAuthor, replyContent) => {
+    async function getReplies() {
+        let postID = _id;
+        const response = await fetch(`/api/getReplies?postID=${postID}`);
+        if (!response.ok) {
+          const error = await response.json();
+          throw new Error(error.message || 'Failed to get replies');
+        }
+        const data = await response.json();
+        setReplies(data.reverse());
+      }
+
+    useEffect(() => {
+        getReplies();
+    }, []);
+
+    // this function needs to be cleaned up badly, its literally redundant
+    const addReply = (_id, userIDLocal, replyAuthor, replyContent) => {
         // console.log("reply data being passed:",replyAuthor, replyContent);
-        setReplies([...replies, { author: replyAuthor, content: replyContent }])
-        setShowReplyForm(false)
+        async function submitReply(_id, userIDLocal, replyAuthor, replyContent) {
+            console.log("async submit reply:",_id, userIDLocal, replyAuthor, replyContent)
+            const response = await fetch('/api/submitReply', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ postID:_id, userID:userIDLocal, author:replyAuthor, content:replyContent })
+            });
+            const data = await response.json();
+            if (response.ok) {
+              console.log("reply added");
+              getReplies();
+            } else {
+              throw new Error(data.message);
+            }
+        }
+        setShowReplyForm(false);
+        submitReply(_id, userIDLocal, replyAuthor, replyContent);    
     }
 
     if(codeLink){
         codeLink = codeLink + "?embed=true";
     }
-    console.log(codeLink)
+    // console.log(codeLink)
 
     const gotoProfile = () => {
         navigate(`/profile/${userName}`, { replace: true });
@@ -129,11 +160,9 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
                     <Typography sx={{ mb: 1.5, color: '#ffffff', fontWeight:'bold' }} variant='subtitle1' color='text.secondary'>
                         By: <button className="profile-button" onClick={gotoProfile}> {userName} </button>
                     </Typography>
-                    
                     <Typography sx={{ color: '#e0e0e0' }} variant='body2' color='text.secondary'>
                         {body}
                     </Typography>
-                  
                     {codeLink && (
                     <iframe src={codeLink} title="Repl embedded code"/>)}
                 </div>)}
@@ -150,7 +179,6 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
                         ))}
                     </div>
                     )}
-                
             </CardContent>
             <CardActions sx={{}}>
                 <Button sx={{color: '#b3cdf5'}} size='small' onClick={() => {
@@ -172,8 +200,7 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
                 <Button sx={{color: '#b3cdf5'}} size='small' onClick={() => setShowReplies(!showReplies)}>
                     Replies
                 </Button>
-
-                {userId === userIDLocal ?
+                {userId === userIDLocal &&
                     <Button sx={{color: '#b3cdf5'}} size='small' onClick={() => {
                             console.log("deleting post", _id)
                             fetch('/api/deletePost', {
@@ -187,16 +214,11 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
                                   })
                             });
                         }
-                    }>
-                        del
-                    </Button>
-                :
-                    null}
-                
+                    }>del</Button>}
             </CardActions>
             {showReplyForm && (
                 <ReplyForm className="reply-form" sx={{color: '#b3cdf5'}}
-                    onSubmit={replyContent => addReply(userNameLocal, replyContent)}
+                    onSubmit={replyContent => addReply(_id, userIDLocal, userNameLocal, replyContent)}
                 />
             )}
         </Card>

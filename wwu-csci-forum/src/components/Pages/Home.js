@@ -15,13 +15,12 @@ export default function Home() {
       const data = await response.json();
       setPosts(data.reverse()); // reverse to get most recent posts rendered first
     }
-
     fetchPosts();
   }, []);
 
   const [filteredPosts, setFilteredPosts] = useState(posts);
 
-  useEffect(() => {
+  useEffect(() => { // render posts based on selected chips/tags
     if (chipData.length > 0) {
       const filtered = posts.filter((post) => {
         return post.chipData.some((chip) => chipData.map((c) => c.label).includes(chip.label));

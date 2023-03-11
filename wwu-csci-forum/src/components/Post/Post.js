@@ -5,7 +5,7 @@ import {loadedChips, chipBank} from '../../util/chips/chips.js';
 import FilterTags from '../FilterTags/FilterTags';
 import { useNavigate } from "react-router-dom";
 
-
+// const replies = [];
 function Post() {
   const navigate = useNavigate();
   const [title, setTitle] = useState();
@@ -37,6 +37,7 @@ function Post() {
         body,
         chipData,
         codeLink,
+        replies: [],
       }),
     });
 
