@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import { Switch, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../store/Slices/AuthSlice';
 import AppLoader from '../../util/loaders/AppLoader'
@@ -11,10 +11,10 @@ import Footer from '../Footer/Footer';
 import DisplayAccount from '../Account/DisplayAccount'
 import Protected from '../../util/Protected';
 import PageNotFound from "../Pages/PageNotFound"
-import Post from "../Post/Post";
 import Account from "../UpdateAccount/Account";
 import './App.css';
 import CodeRunner from "../CodeRunner/CodeRunner";
+import PostPage from "../Pages/PostPage";
 
 const App = () => {
   const { loaded } = useSelector(state => state.auth)
@@ -56,10 +56,14 @@ const App = () => {
           }></Route>
           <Route path='/post' element={
             <Protected>
-              <Post />
+              <PostPage />
             </Protected>
           } />
-          <Route path="/coderun/:lang" element= {<CodeRunner />} />
+          <Route path="/coderun/:lang" element= {
+            <Protected>
+              <CodeRunner />
+            </Protected>
+          } />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </div>

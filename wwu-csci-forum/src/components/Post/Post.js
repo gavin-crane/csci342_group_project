@@ -1,6 +1,5 @@
 import React, { useState, useEffect} from 'react';
 import './Post.css'
-import Button from '../Button/Button';
 import {loadedChips, chipBank} from '../../util/chips/chips.js';
 import FilterTags from '../FilterTags/FilterTags';
 import { useNavigate } from "react-router-dom";
@@ -13,18 +12,15 @@ function Post() {
   const [userId, setUserId] = useState();
   const [userName, setUserName] = useState();
   const [codeLink, setCode] = useState();
-  // console.log("userId", userId);
 
   //currently selected chip data
   const [chipData, setChipData] = useState([]);
   const handleChipDataChange = (newChipData) => {
     setChipData(newChipData);
   };
-  console.log("chip data loaded in Post", chipData)
 
   const handleSubmit = async (event)  => {
     event.preventDefault();
-    console.log("all post details:", userId, title, body, chipData)
     const response = await fetch('/api/submitPost', {
       method: 'POST',
       headers: {
@@ -43,8 +39,6 @@ function Post() {
 
     const data = await response.json();
     console.log(data);
-    // Add code here to send the post data to the server
-    // console.log("Post submitted:", title, body);
     setTitle();
     setBody();
     navigate("/", { replace: true });
@@ -66,8 +60,6 @@ function Post() {
               <textarea className = "InputBody" value={body} placeholder="Text" onChange={event => setBody(event.target.value)} />
               <input className='EmbedLink' type="text" placeholder='https://replit.com/@user/repl-name' value={codeLink} onChange={event => setCode(event.target.value)} />
               <button className = "SubmitButton" onClick= {handleSubmit}>Submit</button>
-              {/* <Button onClick= {handleSubmit}>Submit</Button> */}
-              {/* <button className = "Button" onClick= {handleSubmit}>Submit</button> */}
           </form>
           <FilterTags className="post-filter-tags" loadedChips={loadedChips} chipBank={chipBank} onChipDataChange={handleChipDataChange}/>
 

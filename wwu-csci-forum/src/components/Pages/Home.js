@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import LeftBar from '../LeftBar/LeftBar';
-import ThreadList from '../ThreadList/ThreadList'
 import Thread from '../Thread/Thread';
 import './Home.css'
 import {loadedChips, chipBank} from '../../util/chips/chips.js';
