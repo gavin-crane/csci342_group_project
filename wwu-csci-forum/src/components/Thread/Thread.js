@@ -113,7 +113,7 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
             <CardContent sx={{ overflow: 'auto', height: '100%' }}>
                 {!showReplies && (<div>
                     <div className="thread-tags-container">
-                        {chipData.map(item => <Chip key={item.key} label={item.label} sx={{marginRight: '4px', marginTop: '4px', backgroundColor: '#e0e0e0' }}/>)}
+                        {chipData.map(item => <Chip key={item.key} label={item.label} sx={{marginRight: '4px', marginTop: '4px', backgroundColor: '#cfcfcf' }}/>)}
                     </div>      
                     <Typography gutterBottom variant='h5' component='div' sx={{marginTop: '10px', fontWeight: 'bold' }}>
                         {title}

@@ -13,7 +13,7 @@ const PageNotFound = () => (
             <br />
             <br />
             <br />
-            <Link class="cta-btn" to="/">Go to Home</Link>
+            <Link class="home-link" to="/">Go to Home</Link>
         </div>
     </div>
 );

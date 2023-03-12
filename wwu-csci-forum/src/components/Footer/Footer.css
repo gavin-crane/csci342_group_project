@@ -1,7 +1,6 @@
 /* footer.css */
 .footer {
-    /* flex-basis: 0; */
-    margin-top: 20px;
+    margin: 20px auto 0 auto;
     background-color: rgb(49, 54, 58);
     display: inline-block;
     position: relative;
@@ -10,32 +9,9 @@
     font-weight: lighter;
     bottom: 0;
     width: 100%;
-    padding: 2em 1rem;
+    padding: 0.5rem 1rem;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
     justify-content: center;
-    /* bottom: 0; */
-    /* position: fixed; */
-    /* left: 0; */
-}
-
-.footer-column{
-    padding: 1rem;
-    margin: 0 auto;
-}
-.footer-column p{
-    margin: 20px 0;
-    
-}
-.footer-column p:hover{
-    text-decoration: underline;
-    transition: all 0.3s;
-    cursor: pointer;
-}
-.footer-heading {
-    margin: 0;
-    font-weight: bold;
-    margin: 20px 0;
 }
 
 .footer-link {
@@ -43,7 +19,10 @@
     text-decoration: none;
     margin: 1rem 0;
     display: block;
+}
 
+.footer-link:hover {
+    text-decoration: underline;
 }
 
 /* scrollbar */
