@@ -282,7 +282,7 @@ app.post('/api/deletePost', (req,res) => {
   console.log(req.body);
   console.log("working? on ", _id, userId);
   Post.deleteOne({_id: _id},{userId: userId}).then(console.log("deleted"));
-  res.status(200).json({message: "filler repsonse"})
+  res.status(200).json({message: "post deleted"})
 });
 
 app.get('/api/getPosts', async(req, res) => {
