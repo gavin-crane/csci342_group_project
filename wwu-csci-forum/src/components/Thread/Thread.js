@@ -1,15 +1,12 @@
 import Card from '@mui/material/Card'
 import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
-import CardMedia from '@mui/material/CardMedia'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import TextField from '@mui/material/TextField'
 import Chip from '@mui/material/Chip';
-import { Link, useNavigate } from 'react-router-dom';
-
-import {FormControl, Select, MenuItem} from '@mui/material'
+import { useNavigate } from 'react-router-dom';
 import './Thread.css'
 
 const ReplyForm = ({ onSubmit }) => {
@@ -36,8 +33,6 @@ const ReplyForm = ({ onSubmit }) => {
 export default function MainThread({postDetails: { title, userName, body, chipData, userId, _id, codeLink}, width, height}) {
 
     const [replies, setReplies] = useState([]);
-    const [upvotes, setUpvotes] = useState(0);
-    const [hasUpvoted, setHasUpvoted] = useState(false);
     const [showReplyForm, setShowReplyForm] = useState(false);
     const [showReplies, setShowReplies] = useState(false);
 
@@ -148,19 +143,6 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
                     )}
             </CardContent>
             <CardActions sx={{}}>
-                <Button sx={{color: '#b3cdf5'}} size='small' onClick={() => {
-                    if (!hasUpvoted) {
-                        setUpvotes(upvotes + 1)
-                        setHasUpvoted(true) 
-                    }
-                    else{
-                        setUpvotes(upvotes - 1);
-                        setHasUpvoted(false);
-                    }
-                }}>                    
-                Upvote
-                </Button>
-                {upvotes}
                 <Button sx={{color: '#b3cdf5'}} size='small' onClick={() => setShowReplyForm(!showReplyForm)}>
                     Reply
                 </Button>
