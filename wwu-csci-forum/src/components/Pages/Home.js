@@ -39,7 +39,7 @@ export default function Home() {
         <LeftBar loadedChips={loadedChips} chipBank={chipBank} setChipData={setChipData} />
         <div className="ThreadList">
           {filteredPosts.map((post) => (
-            <Thread postDetails={post} key={post.id} />
+            <Thread postDetails={post} key={post.id} width={360} height={350} />
           ))}
         </div>
       </div>

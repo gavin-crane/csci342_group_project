@@ -7,7 +7,7 @@ class ThreadList extends React.Component{
         return(
             <div className="ThreadList">
                 {this.props.threads.map((thread) => (
-                    <Thread postDetails = {thread} />
+                    <Thread postDetails = {thread} width={360} height={350} />
                 ))}
             </div>
             

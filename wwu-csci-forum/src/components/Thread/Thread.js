@@ -33,7 +33,7 @@ const ReplyForm = ({ onSubmit }) => {
     )
 }
 
-export default function MainThread({postDetails: { title, userName, body, chipData, userId, _id, codeLink}}) {
+export default function MainThread({postDetails: { title, userName, body, chipData, userId, _id, codeLink}, width, height}) {
 
     const [replies, setReplies] = useState([]);
     const [upvotes, setUpvotes] = useState(0);
@@ -61,9 +61,7 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
         setReplies(data.reverse());
       }
 
-    useEffect(() => {
-        getReplies();
-    }, []);
+    
 
     // this function needs to be cleaned up badly, its literally redundant
     const addReply = (_id, userIDLocal, replyAuthor, replyContent) => {
@@ -99,12 +97,16 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
     }
 
     const gotoPost = () => {
-        navigate(`/post/${_id}`, { replace: true });
+        navigate(`/post/${_id}`, { replace: false });
     }
 
+    useEffect(() => {
+        getReplies();
+    }, []);
+
     return (
-        <Card   sx={{ width: 360, 
-                    height: 350, 
+        <Card   sx={{ width: width, 
+                    height: height, 
                     marginTop: 2, 
                     textAlign: 'left',    
                     display: 'flex', 
@@ -117,7 +119,7 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
             <CardContent sx={{ overflow: 'auto', height: '100%' }}>
                 {!showReplies && (<div>
                     <div className="thread-tags-container">
-                        {chipData.map(item => <Chip key={item.key} label={item.label} sx={{marginRight: '4px', marginTop: '4px', backgroundColor: '#cfcfcf' }}/>)}
+                        {chipData?.map(item => <Chip key={item.key} label={item.label} sx={{marginRight: '4px', marginTop: '4px', backgroundColor: '#cfcfcf' }}/>)}
                     </div>      
                     <Typography gutterBottom variant='h5' component='div' sx={{marginTop: '10px' }}>
                         <button className="post-button" onClick={gotoPost}>{title}</button>

@@ -298,6 +298,18 @@ app.get('/api/getPosts', async(req, res) => {
   }
 });
 
+app.get('/api/getPostById', async(req, res) => {
+  const postID = req.query.postID;
+  try {
+    const post = await Post.findOne({_id:postID});
+    res.json(post);
+  }
+  catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
 app.get('/api/getReplies', async(req, res) => {
   const postID = req.query.postID;
   try {
