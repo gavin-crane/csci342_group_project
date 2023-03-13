@@ -46,8 +46,7 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
     }
 
     async function getReplies() {
-        let postID = _id;
-        const response = await fetch(`/api/getReplies?postID=${postID}`);
+        const response = await fetch(`/api/getReplies?postID=${_id}`);
         if (!response.ok) {
           const error = await response.json();
           throw new Error(error.message || 'Failed to get replies');

@@ -16,7 +16,6 @@ function DisplayPost() {
         }
         const data = await response.json();
         setPost(data);
-        console.log(post);
     }
 
     useEffect(() => {
@@ -26,7 +25,7 @@ function DisplayPost() {
     return (
         <div>
             <div className="post-display">
-                <Thread postDetails={post} key={post.id} width={700} height={500} />
+                <Thread postDetails={post} key={post._id} width={700} height={500} />
             </div>
         </div>
         
