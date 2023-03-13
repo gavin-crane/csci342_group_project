@@ -98,6 +98,10 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
         navigate(`/profile/${userName}`, { replace: true });
     }
 
+    const gotoPost = () => {
+        navigate(`/post/${_id}`, { replace: true });
+    }
+
     return (
         <Card   sx={{ width: 360, 
                     height: 350, 
@@ -115,8 +119,8 @@ export default function MainThread({postDetails: { title, userName, body, chipDa
                     <div className="thread-tags-container">
                         {chipData.map(item => <Chip key={item.key} label={item.label} sx={{marginRight: '4px', marginTop: '4px', backgroundColor: '#cfcfcf' }}/>)}
                     </div>      
-                    <Typography gutterBottom variant='h5' component='div' sx={{marginTop: '10px', fontWeight: 'bold' }}>
-                        {title}
+                    <Typography gutterBottom variant='h5' component='div' sx={{marginTop: '10px' }}>
+                        <button className="post-button" onClick={gotoPost}>{title}</button>
                     </Typography>
                     <Typography sx={{ mb: 1.5, color: '#ffffff', fontWeight:'bold' }} variant='subtitle1' color='text.secondary'>
                         By: <button className="profile-button" onClick={gotoProfile}> {userName} </button>

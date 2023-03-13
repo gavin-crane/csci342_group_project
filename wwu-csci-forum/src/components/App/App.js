@@ -15,6 +15,7 @@ import Account from "../UpdateAccount/Account";
 import './App.css';
 import CodeRunner from "../CodeRunner/CodeRunner";
 import PostPage from "../Pages/PostPage";
+import DisplayPost from "../DisplayPost/DisplayPost";
 
 const App = () => {
   const { loaded } = useSelector(state => state.auth)
@@ -41,9 +42,8 @@ const App = () => {
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<LoginPage />} />
           <Route path='/signup' element={<SignupPage />} />
-          <Route path="/profile/:username" element={
-            <DisplayAccount />
-          }></Route>
+          <Route path="/profile/:username" element={<DisplayAccount />}></Route>
+          <Route path="/post/:postid" element={<DisplayPost/>}></Route>
           <Route path='/profile' element={
             <Protected>
               <DisplayAccount />
