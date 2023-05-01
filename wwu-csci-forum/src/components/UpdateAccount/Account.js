@@ -25,7 +25,7 @@ function Account (){
     });
 
     if (errors) {
-        console.log(errors);
+        console.log(errors); // list errors in the console
     }
 
     const handleCancelClick = () => {
