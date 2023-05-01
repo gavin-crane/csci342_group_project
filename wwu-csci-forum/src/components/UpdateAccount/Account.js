@@ -24,6 +24,10 @@ function Account (){
         resolver: zodResolver(formSchema)
     });
 
+    if (errors) {
+        console.log(errors);
+    }
+
     const handleCancelClick = () => {
         navigate("/profile", { replace: true });
     }

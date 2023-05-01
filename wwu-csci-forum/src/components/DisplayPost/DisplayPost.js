@@ -8,19 +8,19 @@ function DisplayPost() {
     const [post, setPost] = useState({});
 
     
-    async function getPost() {
-        const response = await fetch(`/api/getPostById?postID=${postid}`);
-        if (!response.ok) {
-            const error = await response.json();
-            throw new Error(error.message || 'Failed to get post');
-        }
-        const data = await response.json();
-        setPost(data);
-    }
-
     useEffect(() => {
+        async function getPost() {
+            const response = await fetch(`/api/getPostById?postID=${postid}`);
+            if (!response.ok) {
+                const error = await response.json();
+                throw new Error(error.message || 'Failed to get post');
+            }
+            const data = await response.json();
+            setPost(data);
+        }
         getPost();
-    }, []);
+       
+    }, [postid]);
 
     return (
         <div>
