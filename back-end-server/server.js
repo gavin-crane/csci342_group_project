@@ -5,12 +5,11 @@ const bcrypt = require('bcrypt');
 const app = express();
 app.use(express.json());
 
-const port = process.env.PORT || 1337;
+const port = process.env.PORT || 1337; // allow for more ports
 dotenv.config();
 
 const url = process.env.DATABASE_URL;
 console.log("db url: " + url);
-
 
 //schema for post
 const postSchema = new mongoose.Schema({
