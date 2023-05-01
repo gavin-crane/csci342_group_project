@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import "./CodeRunner.css";
 
@@ -23,7 +23,7 @@ export default function CodeRunner(){
     return (
         <div>
             <h1 className="page-title">Test your Code!</h1>            
-            <iframe src={go} width="1280" height="720" />
+            <iframe src={go} width="1280" title="coding window" height="720" />
         </div>
     );
     

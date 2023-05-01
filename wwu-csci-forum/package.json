@@ -1,6 +1,6 @@
 {
   "name": "wwu-csci-forum",
-  "proxy": "http://localhost:1337/",
+  "proxy": "https://csci342groupproject-csci342groupproject-pr-1.up.railway.app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -32,7 +32,7 @@
     "zod": "^3.21.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "npx http-server ./dist",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

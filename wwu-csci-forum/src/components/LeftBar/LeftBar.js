@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import "./LeftBar.css"
 import FilterTags from '../FilterTags/FilterTags';
-import logo from './R.jpeg';
+
 // import {loadedChips, chipBank} from '../../util/chips/chips.js';
 
 // console.log("my loaded chips", loadedChips)
