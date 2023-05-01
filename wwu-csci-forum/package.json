@@ -1,6 +1,7 @@
 {
   "name": "wwu-csci-forum",
   "proxy": "https://csci342groupproject-server.up.railway.app",
+  "homepage": "https://csci342groupproject-production.up.railway.app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
