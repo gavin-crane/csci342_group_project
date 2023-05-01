@@ -11,7 +11,7 @@
     "nodemon": "^2.0.21"
   },
   "scripts": {
-    "back-end-server": "node server.js",
+    "start": "node server.js",
     "wwu-csci-forum": "npm run start --prefix ../wwu-csci-forum",
     "dev": "concurrently \"npm run back-end-server\" \"npm run wwu-csci-forum\""
   }
