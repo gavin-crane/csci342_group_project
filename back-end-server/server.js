@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const app = express();
 app.use(express.json());
-const port = 1337;
+
+const port = process.env.PORT || 1337;
 dotenv.config();
 
 const url = process.env.DATABASE_URL;
@@ -412,7 +413,7 @@ app.post('/api/profile', async (req, res) => {
 
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`server listening on port ${port}`);
 });
   
 
